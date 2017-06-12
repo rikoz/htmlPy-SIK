@@ -1,0 +1,119 @@
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>SIK Test Center</title>
+<!-- Custom Theme files -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<!--web-fonts-->
+<link href='//fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,500,600,700,800,900' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/dash.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!--web-fonts-->
+<script src="js/jquery.min.js"></script>
+
+</head>
+<body>
+	<div class="sidebar col-md-2">
+		<div class="timerr">
+			<h3>Time Left</h3>
+			<h1>00:00:00</h1>
+		</div>
+		
+		<div class="boton" align="Center">
+			<button class="btn" id="submiss">Submit</button>
+		</div>
+		
+		<div class="prof">
+			<img src="images/thumb_sign-in.png" alt="" />
+			<h4 class="name-verif">EREZI, R. S.</h4>
+		</div>
+
+		<div class="boton" align="Center">
+			<button class="btn" id="viewpro">View Profile</button>
+		</div>
+
+	</div>
+	<div class="all-tab col-md-10">
+		<div class="tab">
+		  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Question 1</button>
+		  <button class="tablinks" onclick="openCity(event, 'Paris')">Question 2</button>
+		  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Question 3</button>
+		  <button class="tablinks" onclick="openCity(event, 'Nigeria')">Question 4</button>
+		  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Question 5</button>
+		  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Question 6</button>
+		  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Question 7</button>
+		</div>
+
+		<div id="London" class="tabcontent">
+		  <h3>London</h3>
+		  <p>London is the capital city of England.</p>
+		  <form>
+		  	<textarea style="width: 100%; height: 150px;"></textarea>
+		  </form>
+		</div>
+
+		<div id="Paris" class="tabcontent">
+		  <h3>Paris</h3>
+		  <p>Paris is the capital of France.</p> 
+		  <form>
+		  	<textarea style="width: 100%; height: 150px;"></textarea>
+		  </form>
+		</div>
+
+		<div id="Tokyo" class="tabcontent">
+		  <h3>Tokyo</h3>
+		  <p>Tokyo is the capital of Japan.</p>
+		  <form>
+		  	<textarea style="width: 100%; height: 150px;"></textarea>
+		  </form>
+		</div>
+		<div id="Nigeria" class="tabcontent">
+		  <h3>Nigeria</h3>
+		  <p>Nigeria is the capital of Africa.</p>
+		</div>
+	</div>
+	<div class="boton pull-right">
+		<button class="btn" id="save">Save</button>
+	</div>
+		
+
+
+<!-- Tabs Select & content -->
+
+<script type="text/javascript">
+	function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+</body>
+</html>
