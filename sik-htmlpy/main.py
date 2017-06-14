@@ -1,4 +1,5 @@
 import os
+# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "<project_name>.settings")
 import htmlPy
 from PyQt4 import QtGui
 
@@ -18,7 +19,6 @@ app.template_path = os.path.join(BASE_DIR, "templates/")
 #GUI Templates
 app.template = ("index.html", {})
 
-
 app.web_app.setMinimumWidth(1024)
 app.web_app.setMinimumHeight(768)
 
@@ -26,10 +26,10 @@ app.web_app.setMinimumHeight(768)
 # Binding of back-end functionalities with GUI
 
 # Import back-end functionalities
-from html_to_python import ClassName
+#from html_to_python import ClassName
 
 # Register back-end functionalities
-app.bind(ClassName())
+#app.bind(ClassName())
 
 
 # Instructions for running application
