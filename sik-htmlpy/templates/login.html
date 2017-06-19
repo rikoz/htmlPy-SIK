@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
 <title>SIK Test Center</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="{{ 'css/style.css'|staticfile }}" rel="stylesheet" type="text/css" media="all"/>
 <!-- Custom Theme files -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,9 +15,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--web-fonts-->
 <link href='//fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="{{ 'css/font-awesome.css'|staticfile }}">
 <!--web-fonts-->
-<script src="js/jquery.min.js"></script>
+<script src="{{ 'js/jquery.min.js'|staticfile }}"></script>
 
 </head>
 <body>
@@ -29,7 +29,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="mail-section">
 			<div class="close"> </div>
 				<div class="mail-image">
-					<img src="images/sik_logo.png" alt="" />
+					<img src="{{ 'img/sik_logo.png'|staticfile }}" alt="" />
 						<h3 style="margin-top: 15px;">About</h3>
 				</div>
 					<div class="mail-form">
