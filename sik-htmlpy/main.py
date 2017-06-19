@@ -19,7 +19,7 @@ app.template_path = os.path.join(BASE_DIR, "templates/")
 #GUI Templates
 app.template = ("index.html", {})
 
-app.web_app.setMinimumWidth(1024)
+app.web_app.setMinimumWidth(1366)
 app.web_app.setMinimumHeight(768)
 
 
