@@ -18,9 +18,9 @@ app.template_path = os.path.join(BASE_DIR, "templates/")
 
 #GUI Templates
 #app.template = ("index.html", {})
-#app.template = ("login.html", {})
+app.template = ("login.html", {})
 #app.template = ("profile.html", {})
-app.template = ("test.html", {})
+#app.template = ("test.html", {})
 #app.template = ("submission.html", {})
 
 app.web_app.setMinimumWidth(1366)
