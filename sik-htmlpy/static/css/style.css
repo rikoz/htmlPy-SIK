@@ -29,7 +29,7 @@ img{max-width:100%;}
 /*end reset*/
 body{
 	font-family: 'Raleway', sans-serif;
-	     background: url(../images/images.jpg) no-repeat;
+	     background: url(../img/images.jpg) no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -77,8 +77,8 @@ body{
     float: left;
     width: 56%;
     background: #fff;
-    background: url('../images/dk-denim.png') 0px 0px;
-    background: url('../images/bright-squares.png') 0px 0px;
+    background: url('../img/dk-denim.png') 0px 0px;
+    background: url('../img/bright-squares.png') 0px 0px;
     padding: 2em 3em 2em 2em;
 	border-radius: 2px;
 	-webkit-border-radius: 2px;
@@ -98,7 +98,7 @@ body{
     margin: 1.5em 0;
 }
 .close {
-    background: url('../images/close.png') no-repeat 0px 0px;
+    background: url('../img/close.png') no-repeat 0px 0px;
     cursor: pointer;
     height: 30px;
     position: absolute;
