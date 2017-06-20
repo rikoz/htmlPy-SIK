@@ -1,5 +1,5 @@
 import os
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", "<project_name>.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cbt.settings")
 import htmlPy
 from PyQt4 import QtGui
 
@@ -40,4 +40,5 @@ app.web_app.setMinimumHeight(768)
 if __name__ == "__main__":
     # The driver file will have to be imported everywhere in back-end.
     # So, always keep app.start() in if __name__ == "__main__" conditional
+    showFullScreen()
     app.start()

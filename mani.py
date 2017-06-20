@@ -6,7 +6,7 @@ from PySide.QtWebKit import *
 app = QApplication(sys.argv)
 
 web = QWebView()
-web.load(QUrl("http://facebook.com"))
+web.load(QUrl("http://localhost:8000"))
 web.show()
 
 sys.exit(app.exec_())
