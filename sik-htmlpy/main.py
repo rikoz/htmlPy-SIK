@@ -1,7 +1,14 @@
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cbt.settings")
+import sys
+
 import htmlPy
+from PySide import QtCore,QtGui
 from PyQt4 import QtGui
+
+
+#PySide.QtGui.QWidget.showFullScreen()
+#os.system("gnome-terminal -e 'sudo apt-get update'")
 
 
 # Initial confiurations
@@ -23,6 +30,7 @@ app.template = ("login.html", {})
 #app.template = ("test.html", {})
 #app.template = ("submission.html", {})
 
+
 app.web_app.setMinimumWidth(1366)
 app.web_app.setMinimumHeight(768)
 
@@ -40,5 +48,5 @@ app.web_app.setMinimumHeight(768)
 if __name__ == "__main__":
     # The driver file will have to be imported everywhere in back-end.
     # So, always keep app.start() in if __name__ == "__main__" conditional
-    showFullScreen()
+
     app.start()
