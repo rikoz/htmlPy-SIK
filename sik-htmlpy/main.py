@@ -6,8 +6,7 @@ import htmlPy
 from PySide import QtCore,QtGui
 from PyQt4 import QtGui
 
-
-#PySide.QtGui.QWidget.showFullScreen()
+#Run a termainal operation and command in background
 #os.system("gnome-terminal -e 'sudo apt-get update'")
 
 
@@ -23,6 +22,7 @@ app = htmlPy.AppGUI(title=u"SIK Test Center", maximized=True, plugins=True)
 app.static_path = os.path.join(BASE_DIR, "static/")
 app.template_path = os.path.join(BASE_DIR, "templates/")
 
+
 #GUI Templates
 #app.template = ("index.html", {})
 app.template = ("login.html", {})
@@ -34,14 +34,17 @@ app.template = ("login.html", {})
 app.web_app.setMinimumWidth(1366)
 app.web_app.setMinimumHeight(768)
 
+
 #Currently used only to DISABLE right clicking on application except for input fields.
 app.right_click_setting(htmlPy.settings.DISABLE)
+
 
 #Currently used only to DISABLE text selection on application.
 app.text_selection_setting(htmlPy.settings.DISABLE)
 
+
 #Displays the app in full screen
-app.window.showFullScreen()
+#app.window.showFullScreen()
 
 # Binding of back-end functionalities with GUI
 
