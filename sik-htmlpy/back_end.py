@@ -3,6 +3,9 @@ import json
 from sample_app import app as htmlPy_app
 
 
+htmlPy_app = htmlPy.AppGUI()
+
+
 class ClassName(htmlPy.Object):
     # GUI callable functions have to be inside a class.
     # The class should be inherited from htmlPy.Object.

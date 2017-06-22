@@ -34,6 +34,14 @@ app.template = ("login.html", {})
 app.web_app.setMinimumWidth(1366)
 app.web_app.setMinimumHeight(768)
 
+#Currently used only to DISABLE right clicking on application except for input fields.
+app.right_click_setting(htmlPy.settings.DISABLE)
+
+#Currently used only to DISABLE text selection on application.
+app.text_selection_setting(htmlPy.settings.DISABLE)
+
+#Displays the app in full screen
+app.window.showFullScreen()
 
 # Binding of back-end functionalities with GUI
 
