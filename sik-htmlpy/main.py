@@ -1,7 +1,6 @@
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cbt.settings")
 import sys
-
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cbt.settings")
 import htmlPy
 from PySide import QtCore,QtGui
 from PyQt4 import QtGui
