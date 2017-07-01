@@ -45,14 +45,15 @@ app.text_selection_setting(htmlPy.settings.DISABLE)
 #Displays the app in full screen
 #app.window.showFullScreen()
 
-# Binding of back-end functionalities with GUI
+## Binding of back-end functionalities with GUI
 
 # Import back-end functionalities
-#from html_to_python import ClassName
+from back_end import sikTest
 
 # Register back-end functionalities
-#app.bind(ClassName())
-
+#app.bind(sikTest())
+pers1 = sikTest("rikome")
+print(pers1.showName())
 
 # Instructions for running application
 if __name__ == "__main__":

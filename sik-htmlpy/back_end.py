@@ -1,19 +1,23 @@
 import htmlPy
 import json
-from sample_app import app as htmlPy_app
+#from sample_app import app as htmlPy_app
 
 
-htmlPy_app = htmlPy.AppGUI()
+#htmlPy_app = htmlPy.AppGUI()
 
 
-class ClassName(htmlPy.Object):
+class sikTest(htmlPy.Object):
     # GUI callable functions have to be inside a class.
     # The class should be inherited from htmlPy.Object.
 
-    def __init__(self):
-        super(ClassName. self).__init__()
+    def __init__(self, nam):
+        #super(sikTest.self).__init__()
         # Initialize the class here, if required.
+        self.name = nam
         return
+
+    def showName(self):
+        return self.name
 
     @htmlPy.Slot()
     def function_name(self):
@@ -42,4 +46,4 @@ class ClassName(htmlPy.Object):
 
 ## You have to bind the class instance to the AppGUI instance to be
 ## callable from GUI
-htmlPy_app.bind(ClassName())
+#htmlPy_app.bind(sikTest())
