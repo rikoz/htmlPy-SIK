@@ -29,9 +29,10 @@ class sikTest(htmlPy.Object):
         return
 
     @htmlPy.Slot()
-    def get_started(self):
+    def about(self):
         ## Change HTML of the app using Jinja2 templates
-        htmlPy_app.template = ("./login.html", {})
+        #htmlPy_app.template = ("./login.html", {})
+        print("it works")
         return
 
 #############################################################################################
