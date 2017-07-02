@@ -3,7 +3,6 @@ import sys
 #os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cbt.settings")
 import htmlPy
 from PySide import QtCore,QtGui
-from PyQt4 import QtGui
 
 #Run a termainal operation and command in background
 #os.system("gnome-terminal -e 'sudo apt-get update'")
@@ -37,13 +36,12 @@ app.web_app.setMinimumHeight(768)
 #Currently used only to DISABLE right clicking on application except for input fields.
 app.right_click_setting(htmlPy.settings.DISABLE)
 
-
 #Currently used only to DISABLE text selection on application.
 app.text_selection_setting(htmlPy.settings.DISABLE)
 
-
 #Displays the app in full screen
 #app.window.showFullScreen()
+
 
 ## Binding of back-end functionalities with GUI
 
@@ -52,8 +50,11 @@ from back_end import sikTest
 
 # Register back-end functionalities
 #app.bind(sikTest())
+
+"""
 pers1 = sikTest("rikome")
 print(pers1.showName())
+"""
 
 # Instructions for running application
 if __name__ == "__main__":
