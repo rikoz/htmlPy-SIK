@@ -13,22 +13,22 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 
 # GUI initializations
-app = htmlPy.AppGUI(title=u"SIK Test Center", maximized=True, plugins=True)
+app = htmlPy.AppGUI(title=u"SIK Test Center", maximized=True, plugins=True, allow_overwrite=True)
 
 
 # GUI configurations
 app.static_path = os.path.join(BASE_DIR, "static/")
 app.template_path = os.path.join(BASE_DIR, "templates/")
-
+app.window.setWindowIcon(QtGui.QIcon(BASE_DIR + "/static/img/icon.png"))
 
 #GUI Templates
 #app.template = ("index.html", {})
 app.template = ("login.html", {})
 #app.template = ("profile.html", {})
 #app.template = ("test.html", {})
-#app.template = ("submission.html", {})
+#app.template = ("submission.html", {"username": "htmlPy_user"})
 
-
+#GUI Geometry
 app.web_app.setMinimumWidth(1366)
 app.web_app.setMinimumHeight(768)
 
@@ -49,16 +49,11 @@ app.text_selection_setting(htmlPy.settings.DISABLE)
 from back_end import sikTest
 
 # Register back-end functionalities
-#app.bind(sikTest())
+app.bind(sikTest())
 
-"""
-pers1 = sikTest("rikome")
-print(pers1.showName())
-"""
 
 # Instructions for running application
 if __name__ == "__main__":
     # The driver file will have to be imported everywhere in back-end.
     # So, always keep app.start() in if __name__ == "__main__" conditional
-
     app.start()

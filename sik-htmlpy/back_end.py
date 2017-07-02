@@ -1,6 +1,6 @@
 import htmlPy
 import json
-#from sample_app import app as htmlPy_app
+#from main import app as htmlPy_app
 
 
 #htmlPy_app = htmlPy.AppGUI()
@@ -10,10 +10,9 @@ class sikTest(htmlPy.Object):
     # GUI callable functions have to be inside a class.
     # The class should be inherited from htmlPy.Object.
 
-    def __init__(self, nam):
-        #super(sikTest.self).__init__()
+    def __init__(self):
+        super(sikTest, self).__init__()
         # Initialize the class here, if required.
-        self.name = nam
         return
 
     def showName(self):
@@ -29,21 +28,42 @@ class sikTest(htmlPy.Object):
         # Refer to API documentation.
         return
 
+    @htmlPy.Slot()
+    def get_started(self):
+        ## Change HTML of the app using Jinja2 templates
+        htmlPy_app.template = ("./login.html", {})
+        return
+
+#############################################################################################
+
     @htmlPy.Slot(str, result=str)
-    def form_function_name(self, json_data):
+    def sikLoginForm(self, json_data):
         # @htmlPy.Slot(arg1_type, arg2_type, ..., result=return_type)
         # This function can be used for GUI forms.
         #
         form_data = json.loads(json_data)
         return json.dumps(form_data)
 
+    @htmlPy.Slot(str, result=str)
+    def sikTestform(self, json_data):
+        # @htmlPy.Slot(arg1_type, arg2_type, ..., result=return_type)
+        # This function can be used for GUI forms.
+        #
+        form_data = json.loads(json_data)
+        return json.dumps(form_data)
+
+#############################################################################################
+
     @htmlPy.Slot()
     def javascript_function(self):
         # Any function decorated with @htmlPy.Slot decorater can be called
         # using javascript in GUI
+
+        ## Execute javascript on currently displayed HTML in the app
+        htmlPy_app.evaluate_javascript("alert('Hello from back-end')")
         return
 
 
 ## You have to bind the class instance to the AppGUI instance to be
 ## callable from GUI
-#htmlPy_app.bind(sikTest())
+#htmlPy.AppGUI.bind(sikTest())

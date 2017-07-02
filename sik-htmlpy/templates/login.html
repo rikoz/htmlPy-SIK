@@ -15,6 +15,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--web-fonts-->
 <link href='//fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,500,600,700,800,900' rel='stylesheet' type='text/css'>
+
 <link rel="stylesheet" href="{{ 'css/font-awesome.css'|staticfile }}">
 <!--web-fonts-->
 <script src="{{ 'js/jquery.min.js'|staticfile }}"></script>
@@ -30,14 +31,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="close"> </div>
 				<div class="mail-image">
 					<img src="{{ 'img/sik_logo.png'|staticfile }}" alt="" />
-						<h3 style="margin-top: 15px;">About</h3>
+						<a href="sikTest.function_name" id="about-link" data-bind="true"><h3 style="margin-top: 15px;">About</h3></a>
 				</div>
 					<div class="mail-form">
-					<form>
-						<input type="text" placeholder="User ID..." required=""/>
-						<input type="password"  class="pass" placeholder="Password" required=""/>
-						<input type="submit" value="login">
+
+					<form action="sikTest.sikLoginForm" id="form" data-bind="true">
+						<input type="text" id="form_input" placeholder="User ID..." required=""/>
+						<input type="password" class="pass" id="form_input" placeholder="Password" required=""/>
+						<input type="submit" value="login" id="form_submit">
 					</form>
+
 				</div>
 			<div class="clear"> </div>
 		</div>

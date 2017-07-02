@@ -122,7 +122,7 @@ body{
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
     -moz-border-radius: 4px;
-	background: url(../images/user.png) no-repeat 347px 13px #eee;
+	background: url(../img/user.png) no-repeat 347px 13px #eee;
 	font-family: 'Raleway', sans-serif;
 }
 .mail-form input[type="password"] {
@@ -134,7 +134,7 @@ body{
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
     -moz-border-radius: 4px;
-	background: url(../images/lock.png) no-repeat 347px 13px #eee;
+	background: url(../img/lock.png) no-repeat 347px 13px #eee;
 	font-family: 'Raleway', sans-serif;
 }
 .mail-form input[type="submit"] {
@@ -254,10 +254,10 @@ body{
     width: 50%;
 }
 .mail-form input[type="text"] {
-     background: url(../images/user.png) no-repeat 344px 13px #eee;
+     background: url(../img/user.png) no-repeat 344px 13px #eee;
 }
 .mail-form input[type="password"] {
-     background: url(../images/lock.png) no-repeat 344px 13px #eee;
+     background: url(../img/lock.png) no-repeat 344px 13px #eee;
 }
 }
 @media (max-width: 1080px){
@@ -299,10 +299,10 @@ body{
 	margin-top:1em;
 }
 .mail-form input[type="text"] {
-    background: url(../images/user.png) no-repeat 455px 13px #eee;
+    background: url(../img/user.png) no-repeat 455px 13px #eee;
 }
 .mail-form input[type="password"] {
-    background: url(../images/lock.png) no-repeat 455px 13px #eee;
+    background: url(../img/lock.png) no-repeat 455px 13px #eee;
 }
 .mail-image h2 {
     font-size: 1.3em;
@@ -341,10 +341,10 @@ body{
     width: 44%;
 }
 .mail-form input[type="text"] {
-    background: url(../images/user.png) no-repeat 260px 13px #eee;
+    background: url(../img/user.png) no-repeat 260px 13px #eee;
 }
 .mail-form input[type="password"] {
-    background: url(../images/lock.png) no-repeat 260px 13px #eee;
+    background: url(../img/lock.png) no-repeat 260px 13px #eee;
 }
 }
 @media (max-width: 320px){
