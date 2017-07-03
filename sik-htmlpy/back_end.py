@@ -32,7 +32,7 @@ class sikTest(htmlPy.Object):
     def about(self):
         ## Change HTML of the app using Jinja2 templates
         #htmlPy_app.template = ("./login.html", {})
-        print("it works")
+        #print("it works")
         return
 
 #############################################################################################
