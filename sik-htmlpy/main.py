@@ -1,7 +1,13 @@
 import os
+import django
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cbt.settings")
+django.setup()
+
 import sys
-#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cbt.settings")
 import htmlPy
+
+from back_end import SikTest
 from PySide import QtCore,QtGui
 
 #Run a termainal operation and command in background
@@ -43,17 +49,11 @@ app.text_selection_setting(htmlPy.settings.DISABLE)
 #app.window.showFullScreen()
 
 
-## Binding of back-end functionalities with GUI
-
-# Import back-end functionalities
-from back_end import sikTest
-
-# Register back-end functionalities
-app.bind(sikTest())
+app.bind(SikTest(app))
 
 
 # Instructions for running application
+
 if __name__ == "__main__":
-    # The driver file will have to be imported everywhere in back-end.
-    # So, always keep app.start() in if __name__ == "__main__" conditional
+	
     app.start()
