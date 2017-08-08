@@ -37,18 +37,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="mail-form" style="width: 67%;">
 					<div class="col-md-6">
 						<ul class="stud-inf" style="text-align: left;">
-							<li><label>Student ID:</label> ENG1202872</li>
-							<li><label>Level:</label> 500</li>
-							<li><label>Course Code:</label> CPE481</li>
+							<li><label>Student ID:</label> {{ stud_id }}</li>
+							<li><label>Level:</label> {{ lvl }}</li>
+							<li><label>Course Code:</label> {{ cour_code }}</li>
 							<li><label>Time Allowed (minutes):</label></li>
-							<p style="font-size: 85px;">90</p>
+							<p style="font-size: 85px;">{{ time_allwd }}</p>
 						</ul>
 					</div>
 					<div class="col-md-6">
-						<img src="{{ 'img/thumb_sign-in.png'|staticfile }}" alt="" />
+						<img src="{{ dp|staticfile }}" alt="" />
 						<h3 class="name-verif">EREZI, R. S.</h3>
 					</div>
-						
+
+					<a href="SikTest.strt_tst" data-bind="true" class="about-p">Start Test!</a>	
 				</div>
 			<div class="clear"> </div>
 		</div>
