@@ -12,6 +12,7 @@ class SikTest(htmlPy.Object):
         super(SikTest, self).__init__()
         self.app = app
         self.network_config()
+        self.time_allwd = 1
         return
 
     def show_name(self):
@@ -41,7 +42,7 @@ class SikTest(htmlPy.Object):
         form_data = json.loads(json_data)
 
         if form_data['user_id'] == 'rikome' and form_data['password'] == 'animated50':
-            self.app.template = ("profile.html", {"stud_id": "PSC120345", "lvl": "300", "cour_code": "CPE382", "time_allwd": "48", 
+            self.app.template = ("profile.html", {"stud_id": "PSC120345", "lvl": "300", "cour_code": "CPE382", "time_allwd": self.time_allwd, 
                 "full_name":"EREZI, R.Su.", "dp": "img/thumb_sign-in.png"})
         #Listen for trigger to start test and timer 
 
@@ -55,22 +56,26 @@ class SikTest(htmlPy.Object):
     #Listening to socket for trigger broadcast - Loop
     @htmlPy.Slot()
     def strt_tst(self):
-        self.app.template = ("test.html", {"time_left":"00:00:00", "full_name":"EREZI, R.Su.", "dp": "img/thumb_sign-in.png"})  #tst_timer()
+        self.app.template = ("test.html", {"time_left": self.tst_timer(), "full_name":"EREZI, R.Su.", "dp": "img/thumb_sign-in.png"})  
         return
 
     #Test Count-down timer
     @htmlPy.Slot()
     def tst_timer(self):
-        #msec = time_allwd * 60 * 1000
-        
-        self.time = QtCore.QTime()
-        self.curr_time = time.currentTime()
-        self.end_time = curr_time.addMSecs(msec)
-
-        self.timer = QtCore.QTimer()
-        self.timer.timeout.connect(final_submit)
-        self.timer.start(msec)
-        return end_time
+        msec = (self.time_allwd * 60 * 1000) + 1000
+        h = self.time_allwd // 60
+        m = (self.time_allwd % 60)
+        s = 1
+        tf = str(h)+":"+str(m)+":"+str(s)
+        time = QtCore.QTime()
+        time_left = time.fromString(tf, "h:m:s")
+        """
+        timer = QtCore.QTimer()
+        tmr = timer.singleShot(msec, Slot(self.final_submit()))
+        tsh = timer.setSingleShot('true')
+        tmr.start()
+        """
+        return time_left.toString("hh:mm:ss")
 
     #############################################################################################################
     @htmlPy.Slot(str, result=str)
@@ -81,14 +86,10 @@ class SikTest(htmlPy.Object):
         form_data = json.loads(json_data)
         return json.dumps(form_data)
 
-    @htmlPy.Slot(str, result=str)
-    def final_submit(self, json_data):
-        # @htmlPy.Slot(arg1_type, arg2_type, ..., result=return_type)
-        # This function can be used for GUI forms.
-        #
+    @htmlPy.Slot()
+    def final_submit(self):
         self.app.template = ("submission.html", {})
-        form_data = json.loads(json_data)
-        return json.dumps(form_data)
+        return 
 
     #####JAVASCRIPT########
 
