@@ -62,21 +62,18 @@ class SikTest(htmlPy.Object):
     #Test Count-down timer
     @htmlPy.Slot()
     def tst_timer(self):
-        msec = (self.time_allwd * 60 * 1000) + 1000
+        msec = (self.time_allwd * 60 * 1000) + 500
         h = self.time_allwd // 60
         m = (self.time_allwd % 60)
         s = 1
         tf = str(h)+":"+str(m)+":"+str(s)
         time = QtCore.QTime()
         time_left = time.fromString(tf, "h:m:s")
-        """
-        timer = QtCore.QTimer()
-        tmr = timer.singleShot(msec, Slot(self.final_submit()))
-        tsh = timer.setSingleShot('true')
-        tmr.start()
-        """
-        return time_left.toString("hh:mm:ss")
+        
+        QtCore.QTimer.singleShot(msec, self.final_submit)
 
+        return time_left.toString("hh:mm:ss")
+        
     #############################################################################################################
     @htmlPy.Slot(str, result=str)
     def sik_test_form(self, json_data):
