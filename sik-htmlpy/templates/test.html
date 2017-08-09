@@ -28,7 +28,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="timerr">
 			<h3>Time Left</h3>
-			<h1>00:00:00</h1>
+			<h1>{{ time_left }}</h1>
+			
 		</div>
 		
 		<div class="boton" align="Center">
@@ -36,8 +37,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		
 		<div class="prof">
-			<img src="{{ 'img/thumb_sign-in.png'|staticfile }}" alt="" />
-			<h4 class="name-verif">EREZI, R. S.</h4>
+			<img src="{{ dp|staticfile }}" alt="" />
+			<h4 class="name-verif">{{ full_name }}</h4>
 		</div>
 
 		<div class="boton" align="Center">
@@ -117,6 +118,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 </script>
+
+
+
 
 </body>
 </html>

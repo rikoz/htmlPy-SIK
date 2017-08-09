@@ -1,6 +1,7 @@
 import htmlPy
 import json
 from app.models import Course, Question, Option
+from PySide import QtCore
 
 
 class SikTest(htmlPy.Object):
@@ -41,27 +42,51 @@ class SikTest(htmlPy.Object):
 
         if form_data['user_id'] == 'rikome' and form_data['password'] == 'animated50':
             self.app.template = ("profile.html", {"stud_id": "PSC120345", "lvl": "300", "cour_code": "CPE382", "time_allwd": "48", 
-                "dp": "img/thumb_sign-in.png"})
+                "full_name":"EREZI, R.Su.", "dp": "img/thumb_sign-in.png"})
+        #Listen for trigger to start test and timer 
+
         else:
             self.login_val_error()
 
         #dumps the dictionary key-value pairs as json format into a variable
         #d = json.dumps(form_data)
-
-        #with open("/home/rikoz/Desktop/fyp/htmlPy-SIK/koz.txt", "w") as f:
-        #    f.write(g)
         return
 
+    #Listening to socket for trigger broadcast - Loop
     @htmlPy.Slot()
     def strt_tst(self):
-        self.app.template = ("test.html", {})
+        self.app.template = ("test.html", {"time_left":"00:00:00", "full_name":"EREZI, R.Su.", "dp": "img/thumb_sign-in.png"})  #tst_timer()
         return
 
+    #Test Count-down timer
+    @htmlPy.Slot()
+    def tst_timer(self):
+        #msec = time_allwd * 60 * 1000
+        
+        self.time = QtCore.QTime()
+        self.curr_time = time.currentTime()
+        self.end_time = curr_time.addMSecs(msec)
+
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(final_submit)
+        self.timer.start(msec)
+        return end_time
+
+    #############################################################################################################
     @htmlPy.Slot(str, result=str)
     def sik_test_form(self, json_data):
         # @htmlPy.Slot(arg1_type, arg2_type, ..., result=return_type)
         # This function can be used for GUI forms.
         #
+        form_data = json.loads(json_data)
+        return json.dumps(form_data)
+
+    @htmlPy.Slot(str, result=str)
+    def final_submit(self, json_data):
+        # @htmlPy.Slot(arg1_type, arg2_type, ..., result=return_type)
+        # This function can be used for GUI forms.
+        #
+        self.app.template = ("submission.html", {})
         form_data = json.loads(json_data)
         return json.dumps(form_data)
 

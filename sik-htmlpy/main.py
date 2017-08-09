@@ -11,6 +11,7 @@ from back_end import SikTest
 from PySide import QtCore,QtGui
 
 #Run a termainal operation and command in background
+#keyboard shortcuts, mouse clicks, Unmount drives, launch apps as embedded
 #os.system("gnome-terminal -e 'sudo apt-get update'")
 
 
@@ -28,8 +29,8 @@ app.template_path = os.path.join(BASE_DIR, "templates/")
 app.window.setWindowIcon(QtGui.QIcon(BASE_DIR + "/static/img/icon.png"))
 
 #GUI Templates
-app.template = ("index.html", {})
-#app.template = ("login.html", {})
+#app.template = ("index.html", {})
+app.template = ("login.html", {})
 #app.template = ("profile.html", {})
 #app.template = ("test.html", {})
 #app.template = ("submission.html", {})
