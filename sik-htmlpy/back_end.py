@@ -1,12 +1,7 @@
-import htmlPy
 import json
-<<<<<<< HEAD
+import htmlPy
 import sik_api
-from PySide import QtCore
-=======
-from app.models import Course, Question, Option
 from PySide import QtCore, QtGui, QtNetwork
->>>>>>> 5f70e6e698b3df8dd24692f6a5a5e90ce814b5b6
 
 
 class SikTest(htmlPy.Object):
