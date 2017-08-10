@@ -1,6 +1,6 @@
 from PySide.QtCore import QTime
 
-def tst_timer():
+def test_timer():
 	msec = 3 * 60 * 1000
 	time = QtCore.QTime()
 	curr_time = time.currentTime()

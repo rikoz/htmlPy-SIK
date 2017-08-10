@@ -28,7 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		<div class="timerr">
 			<h3>Time Left</h3>
-			<h1 id="countdown">{{ time_left }}</h1>
+			<h1 id="countdown">{{ test.time_left }}</h1>
 		</div>
 		
 		<div class="boton" align="Center">
@@ -36,8 +36,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		
 		<div class="prof">
-			<img src="{{ dp|staticfile }}" alt="" />
-			<h4 class="name-verif">{{ full_name }}</h4>
+			<img src="{{ student.photo }}" alt="" width="100px" />
+			<h4 class="name-verif">{{ student.full_name }}</h4>
 		</div>
 
 		<div class="boton" align="Center">

@@ -1,6 +1,6 @@
 import htmlPy
 import json
-from app.models import Course, Question, Option
+import sik_api
 from PySide import QtCore
 
 
@@ -11,8 +11,10 @@ class SikTest(htmlPy.Object):
     def __init__(self, app):
         super(SikTest, self).__init__()
         self.app = app
+        self.profile = {}
+        self.test = {}
+        self.time_allowed = 0
         self.network_config()
-        self.time_allwd = 90
         return
 
     def show_name(self):
@@ -25,7 +27,7 @@ class SikTest(htmlPy.Object):
 
     @htmlPy.Slot()
     def about(self):
-        self.app.template = ("about.html", {"name": Course.objects.get(id=1).name})
+        self.app.template = ("about.html",{"name": "hello chibie"})
         return
 
     @htmlPy.Slot()
@@ -36,13 +38,27 @@ class SikTest(htmlPy.Object):
     @htmlPy.Slot(str, result=str)
     def sik_login_form(self, json_data):
         
-        #loads form data into a dictionary
-        form_data = json.loads(json_data)
+        #loads form data
+        mat_number = json.loads(json_data)['mat_number']
+        password = json.loads(json_data)['password']
 
-        if form_data['user_id'] == 'rikome' and form_data['password'] == 'animated50':
-            self.app.template = ("profile.html", {"stud_id": "PSC120345", "lvl": "300", "cour_code": "CPE382", "time_allwd": self.time_allwd, 
-                "full_name":"EREZI, R.Su.", "dp": "img/thumb_sign-in.png"})
-        #Listen for trigger to start test and timer 
+        if sik_api.auth_user(mat_number, password):
+            self.profile = sik_api.get_profile(mat_number)
+            self.test = sik_api.get_test(password)
+            self.time_allowed = self.test['duration']
+            
+            data = {
+                "student": self.profile,
+                "test": {"duration": self.time_allowed}
+            }
+
+            data['test']['course_title'] = self.test['course_title']
+            data['test']['course_code'] = self.test['course_code']
+            data['test']['course_lecturers'] = self.test['course_lecturers']
+
+            self.app.template = ("profile.html", data)
+        
+            #Listen for trigger to start test and timer 
 
         else:
             self.app.template = ("login.html", {"error": "Wrong Login Credentials / Device WiFi Connection, Try Again!"})
@@ -51,16 +67,22 @@ class SikTest(htmlPy.Object):
 
     #Listening to socket for trigger broadcast - Loop
     @htmlPy.Slot()
-    def strt_tst(self):
-        self.app.template = ("test.html", {"time_left": self.tst_timer(), "full_name":"EREZI, R.Su.", "dp": "img/thumb_sign-in.png"})  
+    def start_test(self):
+        data = {
+            "student": self.profile,
+            "test": self.test
+        }
+        data['test']['time_left'] = self.test_timer()
+
+        self.app.template = ("test.html", data)
         return
 
     #Test Count-down timer
     @htmlPy.Slot()
-    def tst_timer(self):
-        msec = (self.time_allwd * 60 * 1000) + 500
-        h = self.time_allwd // 60
-        m = (self.time_allwd % 60)
+    def test_timer(self):
+        msec = (self.time_allowed * 60 * 1000) + 500
+        h = self.time_allowed // 60
+        m = (self.time_allowed % 60)
         s = 1
         tf = str(h)+":"+str(m)+":"+str(s)
         time = QtCore.QTime()

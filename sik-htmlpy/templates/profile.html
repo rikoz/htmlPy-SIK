@@ -30,26 +30,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="mail-section" style="width: 950px;">
 			<div class="close"> </div>
 				<div class="mail-image">
-					<img src="{{ 'img/sik_logo.png'|staticfile }}" alt="" />
+					<img src="{{ 'img/sik_logo.png'|staticfile }}" alt="" width="200px" />
 						<h3>Read Instructions</h3>
 						
 				</div>
 				<div class="mail-form" style="width: 67%;">
 					<div class="col-md-6">
 						<ul class="stud-inf" style="text-align: left;">
-							<li><label>Student ID:</label> {{ stud_id }}</li>
-							<li><label>Level:</label> {{ lvl }}</li>
-							<li><label>Course Code:</label> {{ cour_code }}</li>
+							<li><label>Student ID:</label> {{ student.mat_number }}</li>
+							<li><label>Course Title:</label> {{ test.course_title }}</li>
+							<li><label>Course Code:</label> {{ test.course_code }}</li>
+							<li><label>Course Lecturer(s):</label> {{ test.course_lecturers }}</li>
+							<li><label>Date:</label> {{ test.date }}</li>
+							<li><label>Venue:</label> {{ test.venue }}</li>
 							<li><label>Time Allowed (minutes):</label></li>
-							<p style="font-size: 85px;">{{ time_allwd }}</p>
+							<p style="font-size: 85px;">{{ test.duration }}</p>
 						</ul>
 					</div>
 					<div class="col-md-6">
-						<img src="{{ dp|staticfile }}" alt="" />
-						<h3 class="name-verif">{{ full_name }}</h3>
+						<img src="{{ student.photo }}" alt="" />
+						<h4 class="name-verif">{{ student.full_name }}</h4>
 					</div>
 
-					<a href="SikTest.strt_tst" data-bind="true" class="about-p">Start Test!</a>	
+					<a href="SikTest.start_test" data-bind="true" class="about-pn btn btn-success">Start Test!</a>	
 				</div>
 			<div class="clear"> </div>
 		</div>
