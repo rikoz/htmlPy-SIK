@@ -1,7 +1,12 @@
 import htmlPy
 import json
+<<<<<<< HEAD
 import sik_api
 from PySide import QtCore
+=======
+from app.models import Course, Question, Option
+from PySide import QtCore, QtGui, QtNetwork
+>>>>>>> 5f70e6e698b3df8dd24692f6a5a5e90ce814b5b6
 
 
 class SikTest(htmlPy.Object):
@@ -15,6 +20,11 @@ class SikTest(htmlPy.Object):
         self.test = {}
         self.time_allowed = 0
         self.network_config()
+<<<<<<< HEAD
+=======
+        self.clear_clipboard()
+        self.time_allwd = 90
+>>>>>>> 5f70e6e698b3df8dd24692f6a5a5e90ce814b5b6
         return
 
     def show_name(self):
@@ -22,7 +32,14 @@ class SikTest(htmlPy.Object):
 
     #automatically connects to the specified network SSID and password
     def network_config(self):
-        #self.network_prompt()
+        mgr = QtNetwork.QNetworkConfigurationManager()
+        #deflt = mgr.allConfigurations(QNetworkConfiguration.Active)
+        return
+
+    #Reconfigure Key Combinations
+    def clear_clipboard(self):
+        clip_board = QtGui.QClipboard()
+        clip_board.clear()
         return
 
     @htmlPy.Slot()
