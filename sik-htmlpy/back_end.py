@@ -12,7 +12,7 @@ class SikTest(htmlPy.Object):
         super(SikTest, self).__init__()
         self.app = app
         self.network_config()
-        self.time_allwd = 1
+        self.time_allwd = 90
         return
 
     def show_name(self):
@@ -20,7 +20,7 @@ class SikTest(htmlPy.Object):
 
     #automatically connects to the specified network SSID and password
     def network_config(self):
-        self.network_prompt()
+        #self.network_prompt()
         return
 
     @htmlPy.Slot()
@@ -30,13 +30,11 @@ class SikTest(htmlPy.Object):
 
     @htmlPy.Slot()
     def get_started(self):
-        self.app.template = ("login.html", {})
+        self.app.template = ("login.html", {"error": "Please make sure your device is successfully connected to the Wi-Fi network specified for this test."})
         return
 
     @htmlPy.Slot(str, result=str)
     def sik_login_form(self, json_data):
-        # @htmlPy.Slot(arg1_type, arg2_type, ..., result=return_type)
-        # This function can be used for GUI forms.
         
         #loads form data into a dictionary
         form_data = json.loads(json_data)
@@ -47,10 +45,8 @@ class SikTest(htmlPy.Object):
         #Listen for trigger to start test and timer 
 
         else:
-            self.login_val_error()
+            self.app.template = ("login.html", {"error": "Wrong Login Credentials / Device WiFi Connection, Try Again!"})
 
-        #dumps the dictionary key-value pairs as json format into a variable
-        #d = json.dumps(form_data)
         return
 
     #Listening to socket for trigger broadcast - Loop
@@ -75,11 +71,10 @@ class SikTest(htmlPy.Object):
         return time_left.toString("hh:mm:ss")
         
     #############################################################################################################
+
     @htmlPy.Slot(str, result=str)
     def sik_test_form(self, json_data):
-        # @htmlPy.Slot(arg1_type, arg2_type, ..., result=return_type)
-        # This function can be used for GUI forms.
-        #
+        
         form_data = json.loads(json_data)
         return json.dumps(form_data)
 
@@ -89,7 +84,7 @@ class SikTest(htmlPy.Object):
         return 
 
     #####JAVASCRIPT########
-
+    """
     @htmlPy.Slot()
     def login_val_error(self):
         # Any function decorated with @htmlPy.Slot decorater can be called
@@ -107,3 +102,4 @@ class SikTest(htmlPy.Object):
         ## Execute javascript on currently displayed HTML in the app
         self.app.evaluate_javascript("prompt('SSID', ''), prompt('Password', '')")
         return
+    """
