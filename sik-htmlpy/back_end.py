@@ -20,11 +20,7 @@ class SikTest(htmlPy.Object):
         self.test = {}
         self.time_allowed = 0
         self.network_config()
-<<<<<<< HEAD
-=======
         self.clear_clipboard()
-        self.time_allwd = 90
->>>>>>> 5f70e6e698b3df8dd24692f6a5a5e90ce814b5b6
         return
 
     def show_name(self):
