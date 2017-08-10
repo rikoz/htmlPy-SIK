@@ -1,7 +1,7 @@
 import htmlPy
 import json
 from app.models import Course, Question, Option
-from PySide import QtCore
+from PySide import QtCore, QtGui, QtNetwork
 
 
 class SikTest(htmlPy.Object):
@@ -12,6 +12,7 @@ class SikTest(htmlPy.Object):
         super(SikTest, self).__init__()
         self.app = app
         self.network_config()
+        self.clear_clipboard()
         self.time_allwd = 90
         return
 
@@ -20,7 +21,14 @@ class SikTest(htmlPy.Object):
 
     #automatically connects to the specified network SSID and password
     def network_config(self):
-        #self.network_prompt()
+        mgr = QtNetwork.QNetworkConfigurationManager()
+        #deflt = mgr.allConfigurations(QNetworkConfiguration.Active)
+        return
+
+    #Reconfigure Key Combinations
+    def clear_clipboard(self):
+        clip_board = QtGui.QClipboard()
+        clip_board.clear()
         return
 
     @htmlPy.Slot()
