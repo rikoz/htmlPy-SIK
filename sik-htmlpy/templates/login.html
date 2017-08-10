@@ -15,11 +15,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--web-fonts-->
 <link href='//fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Raleway:400,100,200,500,600,700,800,900' rel='stylesheet' type='text/css'>
-
+<link href="{{ 'css/bootstrap.min.css'|staticfile }}" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="{{ 'css/font-awesome.css'|staticfile }}">
 <!--web-fonts-->
 <script src="{{ 'js/jquery.min.js'|staticfile }}"></script>
-
+<script src="{{ 'js/jquery.popupoverlay.js'|staticfile }}"></script>
+<style type="text/css">
+	.well {
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        display:none;
+        margin:1em;
+    }
+</style>
 </head>
 <body>
 	<div class="header">
@@ -31,7 +38,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="close"> </div>
 				<div class="mail-image">
 					<img src="{{ 'img/sik_logo.png'|staticfile }}" alt="" />
-					<a href="SikTest.about" data-bind="true" class="about-p">About</a>
+					<div style="height: 20px">
+						
+					</div>
+					<!-- <a href="SikTest.about" data-bind="true" class="about-p">About</a>  -->
+					<button class="my_popup_open btn btn-default">About SIK</button>
 				</div>
 					<div class="mail-form">
 
@@ -48,6 +59,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="footer">
 			<p>&copy 2017 SIK Test Center . All rights reserved | Design by Rikozone Technologies</p>
 		</div><br>
+
+		 <!-- Add content to the popup -->
+  <div id="my_popup" class="well">
+		<h3>About SIK Test Center</h3>
+		<h5><b>S</b> - <i>Skill</i>, <b>I</b> - <i>Intelligence</i>, <b>K</b> - <i>Knowledge</i></h5>
+		<h5>developed by Rikozone Technology - is a Computer Based Test Software <br> for administration of pratical exams, taking exam CPE481 as case study</h5>
+		<h5>A Final Year Project designed and developed in the department of Computer Enginerring, <br> UNIVERSITY OF BENIN, BENIN CITY, NIGERIA</h5>
+		<div>
+			<center><img src="{{ 'img/rikozone.png'|staticfile }}" alt="" /></center>
+		</div>
+		
+    <!-- Add an optional button to close the popup -->
+    <button class="my_popup_close btn btn-error pull-right">Close</button>
+
+  </div>
+
+<script>
+    $(document).ready(function() {
+
+      // Initialize the plugin
+      $('#my_popup').popup();
+
+    });
+</script>
+
 
 </body>
 </html>

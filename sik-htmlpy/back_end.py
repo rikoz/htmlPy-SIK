@@ -1,12 +1,7 @@
 import htmlPy
 import json
-<<<<<<< HEAD
 import sik_api
-from PySide import QtCore
-=======
-from app.models import Course, Question, Option
 from PySide import QtCore, QtGui, QtNetwork
->>>>>>> 5f70e6e698b3df8dd24692f6a5a5e90ce814b5b6
 
 
 class SikTest(htmlPy.Object):
@@ -20,11 +15,8 @@ class SikTest(htmlPy.Object):
         self.test = {}
         self.time_allowed = 0
         self.network_config()
-<<<<<<< HEAD
-=======
         self.clear_clipboard()
-        self.time_allwd = 90
->>>>>>> 5f70e6e698b3df8dd24692f6a5a5e90ce814b5b6
+        
         return
 
     def show_name(self):
@@ -72,6 +64,8 @@ class SikTest(htmlPy.Object):
             data['test']['course_title'] = self.test['course_title']
             data['test']['course_code'] = self.test['course_code']
             data['test']['course_lecturers'] = self.test['course_lecturers']
+            data['test']['venue'] = self.test['venue']
+            data['test']['date'] = self.test['date'].split("T")[0]
 
             self.app.template = ("profile.html", data)
         

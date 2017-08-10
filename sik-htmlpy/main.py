@@ -29,8 +29,8 @@ app.template_path = os.path.join(BASE_DIR, "templates/")
 app.window.setWindowIcon(QtGui.QIcon(BASE_DIR + "/static/img/icon.png"))
 
 #GUI Templates
-#app.template = ("index.html", {})
-app.template = ("login.html", {})
+app.template = ("index.html", {})
+#app.template = ("login.html", {})
 #app.template = ("profile.html", {})
 #app.template = ("test.html", {})
 #app.template = ("submission.html", {})
@@ -41,10 +41,10 @@ app.web_app.setMinimumHeight(768)
 
 
 #Currently used only to DISABLE right clicking on application except for input fields.
-#app.right_click_setting(htmlPy.settings.DISABLE)
+app.right_click_setting(htmlPy.settings.DISABLE)
 
 #Currently used only to DISABLE text selection on application.
-#app.text_selection_setting(htmlPy.settings.DISABLE)
+app.text_selection_setting(htmlPy.settings.DISABLE)
 
 #Displays the app in full screen
 #app.window.showFullScreen()
