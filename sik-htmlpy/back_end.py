@@ -1,5 +1,5 @@
-import htmlPy
 import json
+import htmlPy
 import sik_api
 from PySide import QtCore, QtGui, QtNetwork
 
@@ -16,7 +16,7 @@ class SikTest(htmlPy.Object):
         self.time_allowed = 0
         self.network_config()
         self.clear_clipboard()
-        
+
         return
 
     def show_name(self):
@@ -115,24 +115,3 @@ class SikTest(htmlPy.Object):
     def final_submit(self):
         self.app.template = ("submission.html", {})
         return 
-
-    #####JAVASCRIPT########
-    """
-    @htmlPy.Slot()
-    def login_val_error(self):
-        # Any function decorated with @htmlPy.Slot decorater can be called
-        # using javascript in GUI
-
-        ## Execute javascript on currently displayed HTML in the app
-        self.app.evaluate_javascript("alert('Wrong Credentials')")
-        return
-
-    @htmlPy.Slot()
-    def network_prompt(self):
-        # Any function decorated with @htmlPy.Slot decorater can be called
-        # using javascript in GUI
-
-        ## Execute javascript on currently displayed HTML in the app
-        self.app.evaluate_javascript("prompt('SSID', ''), prompt('Password', '')")
-        return
-    """
