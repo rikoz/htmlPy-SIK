@@ -47,41 +47,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<div class="all-tab col-md-10">
 		<div class="tab">
-		  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Question 1</button>
-		  <button class="tablinks" onclick="openCity(event, 'Paris')">Question 2</button>
-		  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Question 3</button>
-		  <button class="tablinks" onclick="openCity(event, 'Nigeria')">Question 4</button>
-		  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Question 5</button>
-		  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Question 6</button>
-		  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Question 7</button>
+		  <button class="tablinks" onclick="openQuestion(event, 'Qtn1')" id="defaultOpen">Question 1</button>
+		  <button class="tablinks" onclick="openQuestion(event, 'Qtn2')">Question 2</button>
+		  <button class="tablinks" onclick="openQuestion(event, 'Qtn3')">Question 3</button>
+		  <button class="tablinks" onclick="openQuestion(event, 'Qtn4')">Question 4</button>
 		</div>
 
-		<div id="London" class="tabcontent">
-		  <h3>London</h3>
+		<div id="Qtn1" class="tabcontent">
+		  <h4>Question One</h4>
 		  <p>London is the capital city of England.</p>
 		  <form>
-		  	<textarea style="width: 100%; height: 150px;"></textarea>
+		  	<textarea style="width: 100%; height: 150px;" name="Qtn1"></textarea>
 		  </form>
 		</div>
 
-		<div id="Paris" class="tabcontent">
-		  <h3>Paris</h3>
+		<div id="Qtn2" class="tabcontent">
+		  <h4>Question Two</h4>
 		  <p>Paris is the capital of France.</p> 
 		  <form>
-		  	<textarea style="width: 100%; height: 150px;"></textarea>
+		  	<textarea style="width: 100%; height: 150px;" name="Qtn2"></textarea>
 		  </form>
 		</div>
 
-		<div id="Tokyo" class="tabcontent">
-		  <h3>Tokyo</h3>
+		<div id="Qtn3" class="tabcontent">
+		  <h4>Question Three</h4>
 		  <p>Tokyo is the capital of Japan.</p>
 		  <form>
-		  	<textarea style="width: 100%; height: 150px;"></textarea>
+		  	<textarea style="width: 100%; height: 150px;" name="Qtn3"></textarea>
 		  </form>
 		</div>
-		<div id="Nigeria" class="tabcontent">
-		  <h3>Nigeria</h3>
+		<div id="Qtn4" class="tabcontent">
+		  <h4>Question Four</h4>
 		  <p>Nigeria is the capital of Africa.</p>
+		  <form>
+		  	<textarea style="width: 100%; height: 150px;" name="Qtn4"></textarea>
+		  </form>
 		</div>
 	</div>
 	<div class="boton pull-right">
@@ -95,7 +95,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- Tabs Select & content -->
 
 <script type="text/javascript">
-	function openCity(evt, cityName) {
+	function openQuestion(evt, qNum) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -112,7 +112,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(qNum).style.display = "block";
     evt.currentTarget.className += " active";
 }
 
