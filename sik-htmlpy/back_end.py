@@ -1,3 +1,4 @@
+import os
 import json
 import htmlPy
 import sik_api
@@ -114,4 +115,10 @@ class SikTest(htmlPy.Object):
     @htmlPy.Slot()
     def final_submit(self):
         self.app.template = ("submission.html", {})
+        #command_line()
         return 
+
+    @htmlPy.Slot()
+    def command_line(self):
+        #os.system("gnome-terminal -e 'sudo shutdown -P now'")
+        return

@@ -10,9 +10,10 @@ import htmlPy
 from back_end import SikTest
 from PySide import QtCore,QtGui
 
-#Run a termainal operation and command in background
-#keyboard shortcuts, mouse clicks, Unmount drives, launch apps as embedded
-#os.system("gnome-terminal -e 'sudo apt-get update'")
+
+#Run a termainal operation and command in background (keyboard shortcuts, mouse clicks, Unmount drives, launch apps as embedded)
+#os.system("gnome-terminal -e 'udisksctl unmount -f --block-device /dev/sda'")
+#os.system("gnome-terminal -e 'udisksctl power-off --block-device /dev/sda'")
 
 
 # Initial confiurations
