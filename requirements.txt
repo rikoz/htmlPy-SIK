@@ -17,3 +17,5 @@ six==1.10.0
 urllib3==1.22
 PySide==1.2.4
 htmlPy==2.0.3
+Jinja2==2.9.6
+MarkupSafe==1.0
