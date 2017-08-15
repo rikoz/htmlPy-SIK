@@ -33,16 +33,34 @@ class Test(models.Model):
         return self.title
 
 
+class Application(models.Model):
+    command = models.CharField(max_length=200)
+    extension = models.CharField(max_length=7)
+    icon = models.ImageField(upload_to='icons/%Y/%m/%d', blank=True, null=True)
+
+
 class Question(models.Model):
     test = models.ForeignKey(Test, related_name='questions')
     question_type = models.CharField(help_text="shows the type of question",
                                      max_length=200,
                                      choices=CHOICES)
-
     detail = models.CharField(max_length=200, help_text="Question detail")
 
     def __str__(self):
         return self.detail
+
+
+class QuestionFile(models.Model):
+    question = models.ForeignKey(Question, related_name='files')
+    name = models.CharField(max_length=200)
+    app = models.OneToOneField(Application)
+    location = models.FileField(upload_to='files/%Y/%m/%d', blank=True, null=True)
+
+
+class QuestionImage(models.Model):
+    question = models.ForeignKey(Question, related_name='images')
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='questionimages/%Y/%m/%d')
 
 
 class Option(models.Model):

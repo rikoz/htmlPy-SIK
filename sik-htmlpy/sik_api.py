@@ -20,3 +20,4 @@ def auth_user(mat_number, password):
         return True
     else:
         return False
+    
