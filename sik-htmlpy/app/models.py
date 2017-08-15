@@ -14,7 +14,7 @@ class Course(models.Model):
     lecturers = models.TextField()
 
     def __str__(self):
-        return self.title
+        return self.code
 
 
 class Test(models.Model):
@@ -37,6 +37,9 @@ class Application(models.Model):
     command = models.CharField(max_length=200)
     extension = models.CharField(max_length=7)
     icon = models.ImageField(upload_to='icons/%Y/%m/%d', blank=True, null=True)
+    
+    def admin_icon(self):
+		return '<img src="{0}" width="80px" height="80px"/>'.format(self.icon.url)
 
 
 class Question(models.Model):
@@ -56,6 +59,9 @@ class QuestionFile(models.Model):
     app = models.OneToOneField(Application)
     location = models.FileField(upload_to='files/%Y/%m/%d', blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class QuestionImage(models.Model):
     question = models.ForeignKey(Question, related_name='images')
@@ -66,16 +72,19 @@ class QuestionImage(models.Model):
 class Option(models.Model):
     question = models.ForeignKey(Question, related_name='options')
     detail = models.CharField(max_length=200, help_text='detail of the option')
-    selected = models.BooleanField(help_text="if option has been selected")
 
     def __str__(self):
         return self.detail
 
 
 class Student(models.Model):
+    course = models.ForeignKey(Course, related_name='students')
     mat_number = models.CharField(max_length=10, unique=True)
     full_name = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='photos/%Y/%m/%d', null=True, blank=True)
+
+    def admin_photo(self):
+		return '<img src="{0}" width="100px" height="100px"/>'.format(self.photo.url)
 
     def __str__(self):
         return self.mat_number
