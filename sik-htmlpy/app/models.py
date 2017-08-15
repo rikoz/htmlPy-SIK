@@ -78,7 +78,7 @@ class Option(models.Model):
 
 
 class Student(models.Model):
-    course = models.ForeignKey(Course, related_name='students')
+    course = models.ForeignKey(Course, related_name='students', null=True, blank=True)
     mat_number = models.CharField(max_length=10, unique=True)
     full_name = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='photos/%Y/%m/%d', null=True, blank=True)

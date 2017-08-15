@@ -43,7 +43,7 @@ class ApplicationAdmin(admin.ModelAdmin):
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('test', 'test__course__title', 'question_type', 'detail')
+    list_display = ('test', 'question_type', 'detail')
     list_filter = ('question_type',)
     search_fields = ('detail',)
     inlines = [
