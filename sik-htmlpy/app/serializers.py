@@ -10,6 +10,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
 
 
 class QuestionFileSerializer(serializers.ModelSerializer):
+    app = ApplicationSerializer()
     
     class Meta:
         model = QuestionFile
