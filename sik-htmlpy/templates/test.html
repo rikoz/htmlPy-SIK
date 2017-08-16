@@ -99,7 +99,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			{% for option in question.options %}
 		
 			<div class="frb frb-success">
-				<input type="radio" id="{{ option.id }}" name="Opt{{ option.id }}" value="{{ option.id }}">
+				<input type="radio" id="{{ option.id }}" name="{{ question.number }}" value="{{ option.id }}">
 				<label for="{{ option.id }}">
 					<span class="frb-title">Option {{ option.id }}</span>
 					<span class="frb-description">{{ option.detail }}</span>
