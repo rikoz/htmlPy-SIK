@@ -41,9 +41,10 @@ class SikTest(htmlPy.Object):
         self.app.template = ("login.html", {"error": "Please make sure your device is successfully connected to the Wi-Fi network specified for this test."})
         return
 
-    @htmlPy.Slot()
-    def sik_edit_file(self, app_command, filename):
-
+    @htmlPy.Slot(str, result=str)
+    def sik_edit_file(self, json_app):
+        app_command = json.loads(json_app)['command']
+        filename = json.loads(json_app)['question-id'] + json.loads(json_app)['filename'] + json.loads(json_app)['extension']
         # open a file with specified filename and terminal command
         p = subprocess.Popen([app_command,filename], stdout=subprocess.PIPE)
         p.communicate()

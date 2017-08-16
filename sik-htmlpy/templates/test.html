@@ -64,7 +64,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 
 		<div class="boton" align="Center">
-			<button class="my_popup_open btn btn-primary" id="viewpro">View Profile</button>
+			<button class="my_popup_open btn btn-primary" onclick="popnow('my_popup')" id="viewpro">View Profile</button>
 		</div>
 
 	</div>
@@ -86,7 +86,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		  <h3>Question {{ question.number }}</h3>
 		  <div style="display:inline-block;">
 		  {% for image in question.images %}
-			 <img src="{{ image.image }}" style="cursor:pointer;" class="img-thumbnail" alt="{{ image.title }}" width="100px"> 
+			 <img src="{{ image.image }}" style="cursor:pointer; max-height: 350px;" class="img-thumbnail" id="{{ image.id }}" alt="{{ image.title }}"> 
+			 <!--
+			 <div id="{{ image.id }}" class="well">
+			 	onclick="javascript:popnow()"
+				<img src="{{ image.image }}" style="max-height: 500px;" /><br>
+			 </div>
+			 -->
 		  {% endfor %}
 		  </div>
 		  <h4>{{ question.detail }}</h4>
@@ -118,9 +124,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<br><br>
 		<div style="margin-top: 30px;">
 		{% for file in question.files %}
-			 <center><h3 style="font-weight:bold">{% if file.app.icon %}<img src="{{ file.app.icon }}" width="40px">{% endif %} {{ file.name }}{{ file.app.extension }}
-		     <button type="button" class="btn btn-info" onclick="SikTest.sik_edit_file('{{ file.app.command }}', '{{ question.id }}{{ file.name }}{{ file.app.extension }}');">edit</button><span style="color:green" id="file-open"> <i class="fa fa-check"></i></span>
+			 <center><h3 style="font-weight:bold">{% if file.app.icon %}<img src="{{ file.app.icon }}" width="40px">{% endif %} {{ file.name }}{{ file.app.extension }} &nbsp; <button type="submit" form="app-form" class="btn btn-info" id="tick" value="edit">edit</button><span style="color:green" class="file-open" id="ok"><i class="fa fa-check"></i></span>
 			 </h3></center>
+			 <form action="SikTest.sik_edit_file" id="app-form" data-bind="true">
+			 	<input type="hidden" name="command" value="{{ file.app.command }}">
+			 	<input type="hidden" name="question-id" value="{{ question.id }}">
+			 	<input type="hidden" name="filename" value="{{ file.name }}">
+			 	<input type="hidden" name="extension" value="{{ file.app.extension }}">
+			 </form>
+		     
 		{% endfor %}
 		</div>
 		</div>
@@ -134,8 +146,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div id="my_popup" class="well">
 		<h2>{{ student.full_name }}</h2><br>
 		<img src="{{ student.photo }}" alt="Photo ID" style="max-height: 500px;" /><br>
-	    <!-- Add an optional button to close the popup -->
-	    <button class="my_popup_close btn btn-error pull-right">Close</button>
 	 </div>
 
 
@@ -143,6 +153,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{{ 'js/countdown.js'|staticfile }}"></script>
 
 <!-- Tabs Select & content -->
+<script type="text/javascript">
+
+	$('.file-open').hide()
+
+	$('#tick').click(function() {
+		    $('#ok').fadeIn('fast');
+		})
+	
+</script>
 
 <script type="text/javascript">
 function openQuestion(evt, qNum) {
@@ -170,14 +189,16 @@ function openQuestion(evt, qNum) {
 document.getElementById("defaultOpen").click();
 </script>
 
+<!-- another -->
 <script>
     $(document).ready(function() {
-
+    	
       // Initialize the plugin
       $('#my_popup').popup();
 
     });
 </script>
+
 
 <script src="{{ 'js/bootstrap.min.js'|staticfile }}"></script>
 
