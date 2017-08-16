@@ -72,7 +72,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	<div class="all-tab col-xs-12 col-sm-2 col-md-10">
 		<div class="tab">
-<<<<<<< HEAD
 		{% for question in test.questions %}
 			{% if question.number == test.questions[0]['number'] %}
 		  <button class="tablinks" onclick="openQuestion(event, 'Qtn{{ question.id }}')" id="defaultOpen">{{ question.number }}</button>
@@ -80,31 +79,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		  <button class="tablinks" onclick="openQuestion(event, 'Qtn{{ question.id }}')">{{ question.number }}</button>
 		   {% endif %}
 		{% endfor %}
-=======
-		  {% for question in test.questions %}
-			{% if question.number == test.questions[0]['number'] %}
-		  <button class="tablinks" onclick="openQuestion(event, 'Qtn{{ question.id }}')" id="defaultOpen">{{ question.number }}</button>
-			{% else %}
-		  <button class="tablinks" onclick="openQuestion(event, 'Qtn{{ question.id }}')">{{ question.number }}</button>
-			{% endif %}
-		  {% endfor %}
->>>>>>> 4806887f3d51911788f9c3294713b9e6687bce7e
 		</div>
 
 		{% for question in test.questions %}
 		<div id="Qtn{{ question.id }}" class="tabcontent">
-<<<<<<< HEAD
 		  <h3>Question {{ question.number }} - Theory</h3>
-=======
-		  <h3>Question {{ question.number }}</h3><br>
->>>>>>> 4806887f3d51911788f9c3294713b9e6687bce7e
 		  <div style="display:inline-block;">
 		  {% for image in question.images %}
 			 <img src="{{ image.image }}" style="cursor:pointer;" class="img-thumbnail" alt="{{ image.title }}" width="100px"> 
 		  {% endfor %}
 		  </div>
 		  <h4>{{ question.detail }}</h4>
-<<<<<<< HEAD
 
 	  <form>
 			<div class="col-xs-12 col-sm-6 col-md-5">
@@ -132,28 +117,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		{% endfor %}
 
-=======
-		  {% if question.question_type == 'o' %}
-			{% for option in question.options %}
-			<input type="radio" name="Opt{{ option.id }}" value="{{ option.id }}"> {{ option.detail }}<br>
-			{% endfor %}
-		  {% else %}
-			<textarea style="width:100%;height:150px;" name="Qtn{{ question.id }}"></textarea>
-		  {% endif %}
-		  <br><br>
-		  {% for file in question.files %}
-			 <h3 style="font-weight:bold">{% if file.app.icon %}<img src="{{ file.app.icon }}" width="40px">{% endif %} {{ file.name }}{{ file.app.extension }}
-		     <button type="button" class="btn btn-success" onclick="SikTest.sik_edit_file('{{ file.app.command }}', '{{ question.id }}{{ file.name }}{{ file.app.extension }}');">edit</button><span style="color:green" id="file-open"> <i class="fa fa-check"></i></span>
-			 </h3>
-		  {% endfor %}
-		</div>
-		{% endfor %}
-	</div>
->>>>>>> 4806887f3d51911788f9c3294713b9e6687bce7e
 	<div class="boton pull-right">
 		<button class="btn btn-success" id="save">Save</button>
 	</div>
-<<<<<<< HEAD
 
 	
 	<div id="my_popup" class="well">
@@ -164,8 +130,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 </div>
 
 
-=======
->>>>>>> 4806887f3d51911788f9c3294713b9e6687bce7e
 
 <script src="{{ 'js/countdown.js'|staticfile }}"></script>
 
