@@ -37,11 +37,6 @@ class SikTest(htmlPy.Object):
         return
 
     @htmlPy.Slot()
-    def about(self):
-        self.app.template = ("about.html",{"name": "hello chibie"})
-        return
-
-    @htmlPy.Slot()
     def get_started(self):
         self.app.template = ("login.html", {"error": "Please make sure your device is successfully connected to the Wi-Fi network specified for this test."})
         return

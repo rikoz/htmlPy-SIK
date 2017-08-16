@@ -7,13 +7,16 @@ django.setup()
 import sys
 import htmlPy
 
+#Import back-end functionality
 from back_end import SikTest
 from PySide import QtCore,QtGui
 
 
 #Run a termainal operation and command in background (keyboard shortcuts, mouse clicks, Unmount drives, launch apps as embedded)
-#os.system("gnome-terminal -e 'udisksctl unmount -f --block-device /dev/sda'")
-#os.system("gnome-terminal -e 'udisksctl power-off --block-device /dev/sda'")
+#os.system("gnome-terminal -e 'udisksctl unmount -f --block-device /dev/sdb1'")
+#os.system("gnome-terminal -e 'udisksctl unmount -f --block-device /dev/sdb2'")
+#os.system("gnome-terminal -e 'udisksctl unmount -f --block-device /dev/sdb3'")
+#os.system("gnome-terminal -e 'udisksctl power-off --block-device /dev/sdb'")
 
 
 # Initial confiurations
@@ -52,7 +55,6 @@ app.text_selection_setting(htmlPy.settings.DISABLE)
 app.window.showFullScreen()
 
 #Binding of Back-end functionalities
-from back_end import SikTest
 app.bind(SikTest(app))
 
 

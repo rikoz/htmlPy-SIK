@@ -73,7 +73,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 					<div class="col-md-6">
 						{% if student.photo %}
-						    <img src="{{ student.photo }}" alt="" />
+						    <img class="img-circle img-fluid" src="{{ student.photo }}" alt="" />
 						{% else %}
 						    <img src="{{ 'img/thumb_sign-in.png'|staticfile }}" alt="" />
 						{% endif %}
