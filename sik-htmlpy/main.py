@@ -22,7 +22,6 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # GUI initializations
 app = htmlPy.AppGUI(title=u"SIK Test Center", maximized=True, plugins=True, allow_overwrite=True)
-#app = htmlPy.AppGUI(title=u"SIK Test Center", maximized=True, plugins=True, allow_overwrite=True)
 
 
 # GUI configurations
@@ -49,7 +48,7 @@ app.right_click_setting(htmlPy.settings.DISABLE)
 app.text_selection_setting(htmlPy.settings.DISABLE)
 
 #Displays the app in full screen
-app.window.showFullScreen()
+#app.window.showFullScreen()
 
 #Binding of Back-end functionalities
 from back_end import SikTest

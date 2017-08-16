@@ -47,23 +47,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<div class="all-tab col-md-10">
 		<div class="tab">
-		  <button class="tablinks" onclick="openQuestion(event, 'Qtn1')" id="defaultOpen">Question 1</button>
-		  <button class="tablinks" onclick="openQuestion(event, 'Qtn2')">Question 2</button>
+		  {% for question in test.questions %}
+			{% if question.number == test.questions[0]['number'] %}
+		  <button class="tablinks" onclick="openQuestion(event, 'Qtn{{ question.id }}')" id="defaultOpen">{{ question.number }}</button>
+			{% else %}
+		  <button class="tablinks" onclick="openQuestion(event, 'Qtn{{ question.id }}')">{{ question.number }}</button>
+			{% endif %}
+		  {% endfor %}
 		</div>
 
-		<div id="Qtn1" class="tabcontent">
-		  <h3>Question One</h3>
-		  <h4>Write a C program to solve this first order differential equation.</h4>
-		  <form>
-		  	<textarea style="width: 100%; height: 150px;" name="Qtn1"></textarea>
-		  </form>
+		{% for question in test.questions %}
+		<div id="Qtn{{ question.id }}" class="tabcontent">
+		  <h3>Question {{ question.number }}</h3><br>
+		  <div style="display:inline-block;">
+		  {% for image in question.images %}
+			 <img src="{{ image.image }}" style="cursor:pointer;" class="img-thumbnail" alt="{{ image.title }}" width="100px"> 
+		  {% endfor %}
+		  </div>
+		  <h4>{{ question.detail }}</h4>
+		  {% if question.question_type == 'o' %}
+			{% for option in question.options %}
+			<input type="radio" name="Opt{{ option.id }}" value="{{ option.id }}"> {{ option.detail }}<br>
+			{% endfor %}
+		  {% else %}
+			<textarea style="width:100%;height:150px;" name="Qtn{{ question.id }}"></textarea>
+		  {% endif %}
+		  <br><br>
+		  {% for file in question.files %}
+			 <h3 style="font-weight:bold">{% if file.app.icon %}<img src="{{ file.app.icon }}" width="40px">{% endif %} {{ file.name }}{{ file.app.extension }}
+		     <button type="button" class="btn btn-success" onclick="SikTest.sik_edit_file('{{ file.app.command }}', '{{ question.id }}{{ file.name }}{{ file.app.extension }}');">edit</button><span style="color:green" id="file-open"> <i class="fa fa-check"></i></span>
+			 </h3>
+		  {% endfor %}
 		</div>
+		{% endfor %}
 	</div>
 	<div class="boton pull-right">
 		<button class="btn" id="save">Save</button>
 	</div>
-		
-
 
 <script src="{{ 'js/countdown.js'|staticfile }}"></script>
 

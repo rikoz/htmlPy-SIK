@@ -19,7 +19,7 @@ class OptionInline(admin.TabularInline):
 
 
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('mat_number', 'full_name', 'admin_photo')
+    list_display = ('mat_number', 'full_name')
     list_filter = ('course',)
     search_fields = ('mat_number', 'full_name')
     
@@ -43,7 +43,7 @@ class ApplicationAdmin(admin.ModelAdmin):
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('test', 'question_type', 'detail')
+    list_display = ('test', 'number', 'question_type', 'detail')
     list_filter = ('question_type',)
     search_fields = ('detail',)
     inlines = [

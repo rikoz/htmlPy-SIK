@@ -14,26 +14,31 @@ class QuestionFileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = QuestionFile
-        fields = ('name', 'app', 'location')
+        fields = ('id', 'name', 'app', 'location')
 
 
 class QuestionImageSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = QuestionImage
-        fields = ('title', 'image')
+        fields = ('id', 'title', 'image')
+
+
+class OptionSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Option
+        fields = ('id', 'detail')
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-    options = serializers.SlugRelatedField(many=True, 
-                                           read_only=True,
-                                           slug_field='detail')
+    options = OptionSerializer(many=True, read_only=True)
     images = QuestionImageSerializer(many=True, read_only=True)
     files = QuestionFileSerializer(many=True, read_only=True)
 
     class Meta:
         model = Question
-        fields = ('question_type', 'detail', 'options',
+        fields = ('id', 'number', 'question_type', 'detail', 'options',
             'images', 'files')
 
 
@@ -45,7 +50,7 @@ class TestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Test
-        fields = ('course_title', 'course_code', 'course_lecturers', 'title', 
+        fields = ('id', 'course_title', 'course_code', 'course_lecturers', 'title', 
             'description', 'duration', 'instruction' ,'questions', 'venue', 'date')
 
 

@@ -39,11 +39,15 @@ class Application(models.Model):
     icon = models.ImageField(upload_to='icons/%Y/%m/%d', blank=True, null=True)
     
     def admin_icon(self):
-		return '<img src="{0}" width="80px" height="80px"/>'.format(self.icon.url)
+		return '<img src="{0}" width="80px">'.format(self.icon.url)
+
+    def __str__(self):
+        return self.command
 
 
 class Question(models.Model):
     test = models.ForeignKey(Test, related_name='questions')
+    number = models.PositiveIntegerField()
     question_type = models.CharField(help_text="shows the type of question",
                                      max_length=200,
                                      choices=CHOICES)
@@ -56,7 +60,7 @@ class Question(models.Model):
 class QuestionFile(models.Model):
     question = models.ForeignKey(Question, related_name='files')
     name = models.CharField(max_length=200)
-    app = models.OneToOneField(Application)
+    app = models.ForeignKey(Application)
     location = models.FileField(upload_to='files/%Y/%m/%d', blank=True, null=True)
 
     def __str__(self):
@@ -83,8 +87,8 @@ class Student(models.Model):
     full_name = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='photos/%Y/%m/%d', null=True, blank=True)
 
-    def admin_photo(self):
-		return '<img src="{0}" width="100px" height="100px"/>'.format(self.photo.url)
+    #def admin_photo(self):
+	#	return '<img src="{0}" width="100px">'.format(self.photo.url)
 
     def __str__(self):
         return self.mat_number
