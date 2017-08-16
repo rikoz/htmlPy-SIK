@@ -72,67 +72,51 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 	<div class="all-tab col-xs-12 col-sm-2 col-md-10">
 		<div class="tab">
-		  <button class="tablinks" onclick="openQuestion(event, 'Qtn1')" id="defaultOpen">Question 1</button>
-		  <button class="tablinks" onclick="openQuestion(event, 'Qtn2')">Question 2</button>
+		{% for question in test.questions %}
+			{% if question.number == test.questions[0]['number'] %}
+		  <button class="tablinks" onclick="openQuestion(event, 'Qtn{{ question.id }}')" id="defaultOpen">{{ question.number }}</button>
+		  {% else %}
+		  <button class="tablinks" onclick="openQuestion(event, 'Qtn{{ question.id }}')">{{ question.number }}</button>
+		   {% endif %}
+		{% endfor %}
 		</div>
 
-		<div id="Qtn1" class="tabcontent">
-		  <h3>Question One - Theory</h3>
-		  <h4>Write a C program to solve this first order differential equation.</h4>
-		  <img src="//media/photos/2017/08/10/Fig31.png">
-		  <form>
-		  	<textarea style="width: 100%; height: 150px;" name="Qtn1"></textarea>
-		  </form><br>
-		 <div class="col-xs-12" style="margin-top: 30px;">
-			<center><i class="fa fa-file-text fa-3x" aria-hidden="true"><h3>Filename.extension</h3><button class="btn btn-info" id="viewpro">edit</button></i></center>
-		</div>
-		</div>
+		{% for question in test.questions %}
+		<div id="Qtn{{ question.id }}" class="tabcontent">
+		  <h3>Question {{ question.number }} - Theory</h3>
+		  <div style="display:inline-block;">
+		  {% for image in question.images %}
+			 <img src="{{ image.image }}" style="cursor:pointer;" class="img-thumbnail" alt="{{ image.title }}" width="100px"> 
+		  {% endfor %}
+		  </div>
+		  <h4>{{ question.detail }}</h4>
 
-		<div id="Qtn2" class="tabcontent">
-		  <h3>Question Two - Obj</h3>
-		  <h4>Which of these is the result of equation.</h4>
-		  <img src="//media/photos/2017/08/10/Fig31.png" style="max-height: 200px">
-		  <form>
-			<div class="frb-group">
-		  		<div class="col-xs-12 col-sm-6 col-md-5">
-					<div class="frb frb-success">
-						<input type="radio" id="radio-button-0" name="radio-button" value="0">
-						<label for="radio-button-0">
-							<span class="frb-title">Option A</span>
-							<span class="frb-description">option description &amp; image(if any) can lie here if any</span>
-						</label>
-					</div>
-					<div class="frb frb-success">
-						<input type="radio" id="radio-button-1" name="radio-button" value="1">
-						<label for="radio-button-1">
-							<span class="frb-title">Option B</span>
-							<span class="frb-description">option description &amp; image(if any) can lie here if any</span>
-						</label>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-5">
-					<div class="frb frb-success">
-						<input type="radio" id="radio-button-2" name="radio-button" value="2">
-						<label for="radio-button-2">
-							<span class="frb-title">Option C</span>
-							<span class="frb-description">option description &amp; image(if any) can lie here if any</span>
-						</label>
-					</div>
-					<div class="frb frb-success">
-						<input type="radio" id="radio-button-3" name="radio-button" value="3">
-						<label for="radio-button-3">
-							<span class="frb-title">Option D</span>
-							<span class="frb-description">option description &amp; image(if any) can lie here if any.</span>
-						</label>
-					</div>
-				</div>
+	  <form>
+			<div class="col-xs-12 col-sm-6 col-md-5">
+		  {% if question.question_type == 'o' %}
+			{% for option in question.options %}
+			<div class="frb frb-success">
+				<input type="radio" id="radio-button-{{ option.id }}" name="Opt{{ option.id }}" value="{{ option.id }}">
+				<label for="radio-button-{{ option.id }}">
+					<span class="frb-title">Option {{ option.id }}</span>
+					<span class="frb-description">{{ option.detail }}</span>
+				</label>
 			</div>
-		</form><br>
-		<div class="col-xs-12" style="margin-top: 30px;">
-			<center><i class="fa fa-file-text fa-3x" aria-hidden="true"><h3>Filename.extension</h3><button class="btn btn-info" id="viewpro">edit</button></i></center>
 		</div>
+		{% endfor %}
+		  {% else %}
+			<textarea style="width:100%;height:150px;" name="Qtn{{ question.id }}"></textarea>
+		  {% endif %}
+	</form>
+		<br><br>
+		{% for file in question.files %}
+			 <center><h3 style="font-weight:bold">{% if file.app.icon %}<img src="{{ file.app.icon }}" width="40px">{% endif %} {{ file.name }}{{ file.app.extension }}
+		     <button type="button" class="btn btn-info" onclick="SikTest.sik_edit_file('{{ file.app.command }}', '{{ question.id }}{{ file.name }}{{ file.app.extension }}');">edit</button><span style="color:green" id="file-open"> <i class="fa fa-check"></i></span>
+			 </h3></center>
+		{% endfor %}
 		</div>
-	</div>
+		{% endfor %}
+
 	<div class="boton pull-right">
 		<button class="btn btn-success" id="save">Save</button>
 	</div>
