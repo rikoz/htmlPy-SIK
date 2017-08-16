@@ -49,8 +49,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="tab">
 		  <button class="tablinks" onclick="openQuestion(event, 'Qtn1')" id="defaultOpen">Question 1</button>
 		  <button class="tablinks" onclick="openQuestion(event, 'Qtn2')">Question 2</button>
-		  <button class="tablinks" onclick="openQuestion(event, 'Qtn3')">Question 3</button>
-		  <button class="tablinks" onclick="openQuestion(event, 'Qtn4')">Question 4</button>
 		</div>
 
 		<div id="Qtn1" class="tabcontent">
@@ -58,29 +56,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		  <h4>Write a C program to solve this first order differential equation.</h4>
 		  <form>
 		  	<textarea style="width: 100%; height: 150px;" name="Qtn1"></textarea>
-		  </form>
-		</div>
-
-		<div id="Qtn2" class="tabcontent">
-		  <h3>Question Two</h3>
-		  <h4>Using Newton Raphson's method, Interpolate these values</h4> 
-		  <form>
-		  	<textarea style="width: 100%; height: 150px;" name="Qtn2"></textarea>
-		  </form>
-		</div>
-
-		<div id="Qtn3" class="tabcontent">
-		  <h3>Question Three</h3>
-		  <h4>Tokyo is the capital of Japan.</h4>
-		  <form>
-		  	<textarea style="width: 100%; height: 150px;" name="Qtn3"></textarea>
-		  </form>
-		</div>
-		<div id="Qtn4" class="tabcontent">
-		  <h3>Question Four</h3>
-		  <h4>Nigeria is the capital of Africa.</h4>
-		  <form>
-		  	<textarea style="width: 100%; height: 150px;" name="Qtn4"></textarea>
 		  </form>
 		</div>
 	</div>
@@ -95,7 +70,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- Tabs Select & content -->
 
 <script type="text/javascript">
-	function openQuestion(evt, qNum) {
+function openQuestion(evt, qNum) {
     // Declare all variables
     var i, tabcontent, tablinks;
 

@@ -1,4 +1,4 @@
-import os
+import subprocess
 import json
 import htmlPy
 import sik_api
@@ -15,6 +15,7 @@ class SikTest(htmlPy.Object):
         self.profile = {}
         self.test = {}
         self.time_allowed = 0
+        self.logged_in = False
         self.network_config()
         self.clear_clipboard()
 
@@ -45,6 +46,15 @@ class SikTest(htmlPy.Object):
         self.app.template = ("login.html", {"error": "Please make sure your device is successfully connected to the Wi-Fi network specified for this test."})
         return
 
+    @htmlPy.Slot()
+    def sik_edit_file(self, app_command, filename):
+
+        # open a file with specified filename and terminal command
+        p = subprocess.Popen([app_command,filename], stdout=subprocess.PIPE)
+        p.communicate()
+
+        return
+
     @htmlPy.Slot(str, result=str)
     def sik_login_form(self, json_data):
         
@@ -67,6 +77,8 @@ class SikTest(htmlPy.Object):
             data['test']['course_lecturers'] = self.test['course_lecturers']
             data['test']['venue'] = self.test['venue']
             data['test']['date'] = self.test['date'].split("T")[0]
+
+            self.logged_in = True
 
             self.app.template = ("profile.html", data)
         

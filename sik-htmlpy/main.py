@@ -22,6 +22,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # GUI initializations
 app = htmlPy.AppGUI(title=u"SIK Test Center", maximized=True, plugins=True, allow_overwrite=True)
+#app = htmlPy.AppGUI(title=u"SIK Test Center", maximized=True, plugins=True, allow_overwrite=True)
 
 
 # GUI configurations
@@ -37,8 +38,8 @@ app.template = ("index.html", {})
 #app.template = ("submission.html", {})
 
 #GUI Geometry
-app.web_app.setMinimumWidth(1366)
-app.web_app.setMinimumHeight(768)
+#app.web_app.setMinimumWidth(1366)
+#app.web_app.setMinimumHeight(768)
 
 
 #Currently used only to DISABLE right clicking on application except for input fields.
