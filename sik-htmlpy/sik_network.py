@@ -79,13 +79,13 @@ def Connect(ssid, password=None):
     return False
 
 
-def Add(cellssid, password=None):
-	cell = pyiw.Cell.all('wlp2s0')
+def Add(ssid, password=None):
+	cell = FindFromSearchList(ssid)
 	
 	if not cell:
 		return False
 
-	scheme = pyiw.Scheme.for_cell('wlp2s0', cell, cellssid, password)
+	scheme = pyiw.Scheme.for_cell('wlp2s0', cell, ssid, password)
 	scheme.save()
 	return scheme
 
