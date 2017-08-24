@@ -26,8 +26,7 @@ class SikTest(htmlPy.Object):
 
     #automatically connects to the specified network SSID and password
     def network_config(self):
-        mgr = QtNetwork.QNetworkConfigurationManager()
-        #deflt = mgr.allConfigurations(QNetworkConfiguration.Active)
+        
         return
 
     #Reconfigure Key Combinations
