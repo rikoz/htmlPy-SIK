@@ -1,6 +1,7 @@
 """
 Search for a specific wifi ssid and connect to it.
 written by kasramvd.
+https://stackoverflow.com/questions/21662351/connect-wifi-with-python-or-linux-terminal
 """
 import os
 
