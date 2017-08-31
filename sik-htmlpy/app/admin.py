@@ -4,14 +4,17 @@ from .models import *
 
 class QuestionFileInline(admin.StackedInline):
     model = QuestionFile
+    extra = 0
 
 
 class QuestionImageInline(admin.StackedInline):
     model = QuestionImage
+    extra = 1
 
 
 class StudentInline(admin.TabularInline):
     model = Student
+    extra = 1
 
 
 class OptionInline(admin.TabularInline):
