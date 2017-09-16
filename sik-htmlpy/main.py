@@ -51,7 +51,7 @@ app.right_click_setting(htmlPy.settings.DISABLE)
 app.text_selection_setting(htmlPy.settings.DISABLE)
 
 #Displays the app in full screen
-#app.window.showFullScreen()
+app.window.showFullScreen()
 
 #Binding of Back-end functionalities
 app.bind(SikTest(app))

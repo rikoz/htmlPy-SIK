@@ -2,7 +2,7 @@ import subprocess
 import json
 import htmlPy
 import sik_api
-from PySide import QtCore, QtGui, QtNetwork
+from PySide import QtCore, QtGui
 
 
 class SikTest(htmlPy.Object):
@@ -45,9 +45,7 @@ class SikTest(htmlPy.Object):
         app_command = json.loads(json_app)['command']
         filename = json.loads(json_app)['question-id'] + json.loads(json_app)['filename'] + json.loads(json_app)['extension']
         # open a file with specified filename and terminal command
-        p = subprocess.Popen([app_command,filename], stdout=subprocess.PIPE)
-        p.communicate()
-
+        subprocess.Popen([app_command,filename], stdin=None, stdout=None, stderr=None)
         return
 
     @htmlPy.Slot(str, result=str)
