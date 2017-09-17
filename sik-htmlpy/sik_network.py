@@ -2,12 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import pyiw
+from sik_wireless import sik_iface
 
+iface_name = sik_iface()
 
 def Search():
     pyiwlist = []
 
-    cells = pyiw.Cell.all('wlp2s0')
+    cells = pyiw.Cell.all(iface_name)
 
     for cell in cells:
         pyiwlist.append(cell)
@@ -20,13 +22,13 @@ def FindFromSearchList(ssid):
 
     for cell in pyiwlist:
         if cell.ssid == ssid:
-            return cell.ssid # + " " + cell.encryption_type
+            return cell
 
     return False
 
 
 def FindFromSavedList(ssid):
-    cell = pyiw.Scheme.find('wlp2s0', ssid)
+    cell = pyiw.Scheme.find(iface_name, ssid)
 
     if cell:
         return cell
@@ -82,7 +84,7 @@ def Add(ssid, password=None):
 	if not cell:
 		return False
 
-	scheme = pyiw.Scheme.for_cell('wlp2s0', cell, ssid, password)
+	scheme = pyiw.Scheme.for_cell(iface_name, ssid, cell, password)
 	scheme.save()
 	return scheme
 
@@ -99,17 +101,18 @@ def Delete(ssid):
 
     return False
 
-
+"""
 if __name__ == '__main__':
     # Search pyiw and return pyiw list
     print Search()
 
     # Connect pyiw with password & without password
-    print Connect('Openpyiw')
-    print FindFromSearchList('MTN BB Mobile Hotspot 0448')
-    print Add('MTN BB Mobile Hotspot 0448', 'erezi1405')
-    print FindFromSavedList('MTN BB Mobile Hotspot 0448')
-    print Connect('Closedpyiw', 'password')
+    print Connect('Openwifi')
+    print FindFromSearchList('#koz iPhone')
+    print Add('#koz iPhone', 'omocc5n4jr7zn')
+    print FindFromSavedList('#koz iPhone')
+    print Connect('#koz iPhone', 'omocc5n4jr7zn')
 
     # Delete pyiw from auto connect list
-    print Delete('Deletepyiw')
+    #print Delete('Deletewifi')
+"""

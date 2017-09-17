@@ -2,6 +2,7 @@ import subprocess
 import json
 import htmlPy
 import sik_api
+import sik_network
 from PySide import QtCore, QtGui
 
 
@@ -16,7 +17,6 @@ class SikTest(htmlPy.Object):
         self.test = {}
         self.time_allowed = 0
         self.logged_in = False
-        self.network_config()
         self.clear_clipboard()
 
         return
@@ -25,8 +25,10 @@ class SikTest(htmlPy.Object):
         return self.name
 
     #automatically connects to the specified network SSID and password
+    @htmlPy.Slot()
     def network_config(self):
-        
+        available = sik_network.Search()
+        self.app.template = ("wifi.html", {"available": available})
         return
 
     #Reconfigure Key Combinations

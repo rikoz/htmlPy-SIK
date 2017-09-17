@@ -33,6 +33,7 @@ app.template_path = os.path.join(BASE_DIR, "templates/")
 app.window.setWindowIcon(QtGui.QIcon(BASE_DIR + "/static/img/icon.png"))
 
 #GUI Templates
+#app.template = ("wifi.html", {})
 app.template = ("index.html", {})
 #app.template = ("login.html", {})
 #app.template = ("profile.html", {})
