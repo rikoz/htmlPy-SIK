@@ -43,14 +43,6 @@ class SikTest(htmlPy.Object):
         return
 
     @htmlPy.Slot(str, result=str)
-    def sik_edit_file(self, json_app):
-        app_command = json.loads(json_app)['command']
-        filename = json.loads(json_app)['question-id'] + json.loads(json_app)['filename'] + json.loads(json_app)['extension']
-        # open a file with specified filename and terminal command
-        subprocess.Popen([app_command,filename], stdin=None, stdout=None, stderr=None)
-        return
-
-    @htmlPy.Slot(str, result=str)
     def sik_login_form(self, json_data):
         
         #loads form data
@@ -119,10 +111,44 @@ class SikTest(htmlPy.Object):
         form_data = json.loads(json_data)
         return json.dumps(form_data)
 
-    @htmlPy.Slot()
-    def final_submit(self):
+    @htmlPy.Slot(str, result=str)
+    def sik_edit_file(self, json_app):
+        app_command = json.loads(json_app)['command']
+        filename = json.loads(json_app)['student-id'] + "_" + json.loads(json_app)['question-id'] + "_" + json.loads(json_app)['filename'] + json.loads(json_app)['extension']
+        # open a file with specified filename and terminal command
+        subprocess.Popen([app_command,filename], stdin=None, stdout=None, stderr=None)
+        return
+
+    @htmlPy.Slot(str, result=str)
+    def final_submit(self, json_data):
+        student_id = json.loads(json_data)['student-id']
+        data = json.loads(json_data)
+        student_id = data['student-id']
+        del data['student-id']
+        question_list = []
+        answers = {}
+        questions = {}
+        for key, value in data.items():
+            s = key.split('-')[-1]
+            if key.startswith('question'):
+                questions[s] = value
+            else:
+                answers[s] = value
+        for key, value in questions.items():
+            res = {}
+            res['student'] = student_id
+            res['question'] = value
+            answer = answers[value]
+            try:
+                ans = int(answer)
+                res['option'] = ans
+            except ValueError as e:
+                res['detail'] = answer
+            question_list.append(res)
+            
+        for answer in question_list:
+            sik_api.submit(answer)
         self.app.template = ("submission.html", {})
-        #command_line()
         return 
 
     @htmlPy.Slot()

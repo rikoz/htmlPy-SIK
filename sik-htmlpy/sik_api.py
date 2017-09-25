@@ -12,6 +12,10 @@ def get_profile(mat_number):
     return requests.get(ROOT_URL+'/students/'+mat_number).json()
 
 
+def submit(data):
+    requests.post(ROOT_URL+'/answers/', data=data)
+
+
 def auth_user(mat_number, password):
     test = requests.get(ROOT_URL+'/tests/'+password)
     profile = requests.get(ROOT_URL+'/students/'+mat_number)

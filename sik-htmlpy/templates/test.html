@@ -56,7 +56,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		
 		<div class="boton" align="Center">
 			<form action="SikTest.final_submit" id="final_submit-form" data-bind="true">
-				<button class="btn btn-danger" id="submiss" data-bind="true">Submit</button>
+				<input type="hidden" name="student-id" value="{{ student.id }}">
+				<button id="answersubmit" class="btn btn-danger">Submit</button>
+				<button type="submit" style="display:none" id="submiss" data-bind="true"></button>
 			</form>
 		</div>
 		
@@ -84,7 +86,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 
 		{% for question in test.questions %}
-		<div id="Qtn{{ question.id }}" class="tabcontent">
+		<div id="Qtn{{ question.id }}" data-questionid="{{ question.id }}" data-questionnumber="{{ question.number }}" class="tabcontent">
 		  <h3>Question {{ question.number }}</h3>
 		  <div style="display:inline-block;">
 		  {% for image in question.images %}
@@ -98,38 +100,44 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		  {% endfor %}
 		  </div>
 		  <h4>{{ question.detail }}</h4>
-
-	  
 		
 		  {% if question.question_type == 'o' %}
-		 <form>
+		 <form class="answer">
 		 <div class="col-xs-12 col-sm-6 col-md-5">
 			{% for option in question.options %}
 		
 			<div class="frb frb-success">
-				<input type="radio" id="{{ option.id }}" name="{{ question.number }}" value="{{ option.id }}">
+				<input type="radio" id="{{ option.id }}" class="optionanswer" name="{{ question.number }}" value="{{ option.id }}">
 				<label for="{{ option.id }}">
 					<span class="frb-title">Option {{ option.id }}</span>
 					<span class="frb-description">{{ option.detail }}</span>
 				</label>
 			</div>
+
 		
 			{% endfor %}
 		</div>
 		</form>
 		  {% else %}
-		<form>
-			<textarea style="width:100%;height:150px;" name="Qtn{{ question.id }}"></textarea>
+		<form class="answer">
+			<textarea style="width:100%;height:150px;" id="{{ question.id }}answer"></textarea>
 		</form>
 		  {% endif %}
 		
 		<br><br>
 		<div style="margin-top: 30px;">
 		{% for file in question.files %}
-			 <center><h3 style="font-weight:bold">{% if file.app.icon %}<img src="{{ file.app.icon }}" width="40px">{% endif %} {{ file.name }}{{ file.app.extension }} &nbsp; <button type="submit" form="app-form" class="btn btn-info" id="tick" value="edit">edit</button><span style="color:green" class="file-open" id="ok"><i class="fa fa-check"></i></span>
+			 <center><h3 style="font-weight:bold">
+				{% if file.app.icon %}
+				  <img src="{{ file.app.icon }}" width="40px">
+				{% endif %}
+				{{ file.name }}{{ file.app.extension }} &nbsp;
+				<button type="submit" form="{{ file.id }}app-form" class="btn btn-info" onclick="tick('{{ file.id }}')" id="{{ file.id }}tick">edit</button>
+				<span style="color:green" class="file-open" id="{{ file.id }}ok"><i class="fa fa-check"></i></span>
 			 </h3></center>
-			 <form action="SikTest.sik_edit_file" id="app-form" data-bind="true">
-			 	<input type="hidden" name="command" value="{{ file.app.command }}">
+			 <form action="SikTest.sik_edit_file" id="{{ file.id }}app-form" data-bind="true">
+				<input type="hidden" name="command" value="{{ file.app.command }}">
+				<input type="hidden" name="student-id" value="{{ student.id }}">
 			 	<input type="hidden" name="question-id" value="{{ question.id }}">
 			 	<input type="hidden" name="filename" value="{{ file.name }}">
 			 	<input type="hidden" name="extension" value="{{ file.app.extension }}">
@@ -140,10 +148,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 		{% endfor %}
 	</div>
-	<div class="boton pull-right">
-		<button class="btn btn-success" id="save">Save</button>
-	</div>
-
 	
 	<div id="my_popup" class="well">
 		<h2>{{ student.full_name }}</h2><br>
@@ -159,9 +163,44 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	$('.file-open').hide()
 
-	$('#tick').click(function() {
-		    $('#ok').fadeIn('fast');
-		})
+	function tick(id) {
+		$('#'+id+'ok').fadeIn('fast');
+	}
+	
+	$('#answersubmit').click(function() {
+		$('div.tabcontent').each(function(index){
+			var submitForm = $('#final_submit-form');
+			var formElement = $('form.answer', $(this));
+			var question_id = $(this).data('questionid');
+			var question_number = $(this).data('questionnumber');
+			if (formElement.has('textarea').length) {
+				$('<input />', {
+					type: 'hidden',
+					'name': 'question-id-'+question_number,
+					value: question_id,
+				}).appendTo(submitForm);
+
+				$('<input />', {
+					type: 'hidden',
+					'name': 'answer-'+question_number,
+					value: $('#'+question_id+'answer').val(),
+				}).appendTo(submitForm);
+			} else {
+				$('<input />', {
+					type: 'hidden',
+					'name': 'question-id-'+question_number,
+					value: question_id,
+				}).appendTo(submitForm);
+
+				$('<input />', {
+					type: 'hidden',
+					'name': 'answer-'+question_number,
+					value: $('.optionanswer:checked', $(this)).val(),
+				}).appendTo(submitForm);
+			}
+		});
+		$('#submiss').submit();
+	});
 	
 </script>
 

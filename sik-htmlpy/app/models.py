@@ -92,3 +92,12 @@ class Student(models.Model):
 
     def __str__(self):
         return self.mat_number
+
+
+class Answer(models.Model):
+    student = models.ForeignKey(Student, related_name='answers')
+    question = models.ForeignKey(Question)
+    option = models.ForeignKey(Option, null=True, blank=True)
+    detail = models.TextField(null=True, blank=True)
+    submitted = models.DateTimeField(auto_now_add=True)
+    
