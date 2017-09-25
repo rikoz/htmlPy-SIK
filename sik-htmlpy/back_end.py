@@ -145,11 +145,17 @@ class SikTest(htmlPy.Object):
             except ValueError as e:
                 res['detail'] = answer
             question_list.append(res)
-            
+
         for answer in question_list:
             sik_api.submit(answer)
         self.app.template = ("submission.html", {})
         return 
+
+    @htmlPy.Slot()
+    def sik_logout(self):
+        self.logged_in = False
+        self.app.template = ("login.html", {})
+        return
 
     @htmlPy.Slot()
     def command_line(self):
