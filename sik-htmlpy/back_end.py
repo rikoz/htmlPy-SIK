@@ -19,6 +19,7 @@ class SikTest(htmlPy.Object):
         self.time_allowed = 0
         self.logged_in = False
         self.clear_clipboard()
+	self.response = ''
 
         return
 
@@ -28,8 +29,9 @@ class SikTest(htmlPy.Object):
     #shows wifi connect page
     @htmlPy.Slot()
     def network_config(self):
+	#print 'working config'
         available = sik_network.Search()
-        self.app.template = ("wifi.html", {"available": available})
+        self.app.template = ("wifi.html", {"available": available, "response": self.response})
         return
 
     #automatically connects to the specified network SSID and password
@@ -41,9 +43,13 @@ class SikTest(htmlPy.Object):
 	passkey = json.loads(wifi_info)['passkey']
 	
 	try:
-		sik_network.Connect(ssid_name, passkey)
+		#print ssid_name + " " + passkey
+		if not sik_network.Connect(ssid_name, passkey):
+			self.response = "Error Connecting, Try Again"
+			self.network_config()
 	except:	
-		network_config()
+		self.response = "Something Went Wrong, Contact software developer"
+		self.network_config()
         return
 
     #Reconfigure Key Combinations

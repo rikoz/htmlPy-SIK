@@ -36,14 +36,21 @@ h2{
   padding:0px 0px 70px 0px;
   border: #2980b9 4px solid; 
 }
+
+.below{
+  width:320px;
+  margin: 0 auto 0 auto;
+  margin-top: 10px;
+}
+
 .box-below{
   width:320px;
-  height: auto;
+  height: 700px;
   border-radius:2px;
   margin: 0 auto 0 auto;
   margin-top: 10px;
   padding:0px 0px 70px 0px;
-  border: #ffffff 2px solid; 
+  /*border: #ffffff 2px solid; */
 }
 
 .ssid{
@@ -82,7 +89,7 @@ h2{
   color:white;
   border-radius:4px;
   border: #27ae60 1px solid;
-  
+  text-decoration: none;
   margin-top:20px;
   margin-bottom:20px;
   float:left;
@@ -115,29 +122,52 @@ h2{
 #btn2:hover{ 
 background:#3594D2; 
 }
+
+#btn3{
+  float:right;
+  background:#f4511e;
+  width:125px;  padding-top:5px;
+  padding-bottom:5px;
+  color:white;
+  border-radius:4px;
+  border: #2980b9 1px solid;
+  text-decoration: none;
+  margin-top:20px;
+  margin-bottom:20px;
+  margin-left:10px;
+  margin-right: 10px;
+  font-weight:800;
+  font-size:0.8em;
+}
+
+#btn3:hover{ 
+background:#e54d1d; 
+}
 </style>
 <div style="margin-top: 100px;">
+	<p>{{ response }}</p>
 	<form action="SikTest.network_connect" data-bind="true">
 		<div class="box">
 			<h2>Connect to Wireless Network</h2>
 
 			<input type="text" name="ssid" value="ssid" onFocus="field_focus(this, 'ssid');" onblur="field_blur(this, 'ssid');" class="ssid" />
 			  
-			<input type="password" name="passkey" value="ssid" onFocus="field_focus(this, 'ssid');" onblur="field_blur(this, 'ssid');" class="ssid" />
-			  
-			<a href="SikTest.network_config" data-bind="true"><div class="btn">Refresh</div></a> 
-
-			<a href="#"><div id="btn2">Connect</div></a> <!-- End Btn2 -->
-			<input type="submit" value="Connect" id="btn2">
+			<input type="password" name="passkey" value="passkey" onFocus="field_focus(this, 'ssid');" onblur="field_blur(this, 'ssid');" class="ssid" />
+			<input type="submit" value="Connect" class="btn" id="btn2">  
+			
+			<!-- <a href="#"><div id="btn2">Connect</div></a>  End Btn2 -->
+			
 		  
 		</div> <!-- End Box -->
 	  
 	</form>
 
 </div>
-<div class="gstd">
-							<a href="SikTest.get_started" data-bind="true" class="button" style="vertical-align:middle">Get Started</a>
-						</div>
+		<div class="below">
+			<a href="SikTest.network_config" data-bind="true" class="btn">Refresh</a> &nbsp; <a href="SikTest.get_started" data-bind="true" id="btn3">Get Started</a>
+		</div>
+
+
 <div class="box-below">
 	{% for ssidm in available %}
 	<p class="wifis">
