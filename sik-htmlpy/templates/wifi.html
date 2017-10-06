@@ -38,6 +38,7 @@ h2{
 }
 .box-below{
   width:320px;
+  height: auto;
   border-radius:2px;
   margin: 0 auto 0 auto;
   margin-top: 10px;
@@ -116,23 +117,27 @@ background:#3594D2;
 }
 </style>
 <div style="margin-top: 100px;">
-	<form method="post" action="index.html">
+	<form action="SikTest.network_connect" data-bind="true">
 		<div class="box">
 			<h2>Connect to Wireless Network</h2>
 
 			<input type="text" name="ssid" value="ssid" onFocus="field_focus(this, 'ssid');" onblur="field_blur(this, 'ssid');" class="ssid" />
 			  
-			<input type="password" name="ssid" value="ssid" onFocus="field_focus(this, 'ssid');" onblur="field_blur(this, 'ssid');" class="ssid" />
+			<input type="password" name="passkey" value="ssid" onFocus="field_focus(this, 'ssid');" onblur="field_blur(this, 'ssid');" class="ssid" />
 			  
-			<!--  <a href="#"><div class="btn">Sign In</div></a> End Btn -->
+			<a href="SikTest.network_config" data-bind="true"><div class="btn">Refresh</div></a> 
 
 			<a href="#"><div id="btn2">Connect</div></a> <!-- End Btn2 -->
+			<input type="submit" value="Connect" id="btn2">
 		  
 		</div> <!-- End Box -->
 	  
 	</form>
 
 </div>
+<div class="gstd">
+							<a href="SikTest.get_started" data-bind="true" class="button" style="vertical-align:middle">Get Started</a>
+						</div>
 <div class="box-below">
 	{% for ssidm in available %}
 	<p class="wifis">

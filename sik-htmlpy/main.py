@@ -35,10 +35,6 @@ app.window.setWindowIcon(QtGui.QIcon(BASE_DIR + "/static/img/icon.png"))
 #GUI Templates
 #app.template = ("wifi.html", {})
 app.template = ("index.html", {})
-#app.template = ("login.html", {})
-#app.template = ("profile.html", {})
-#app.template = ("test.html", {})
-#app.template = ("submission.html", {})
 
 #GUI Geometry
 #app.web_app.setMinimumWidth(1366)

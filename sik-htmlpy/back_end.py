@@ -1,3 +1,4 @@
+import os
 import subprocess
 import json
 import htmlPy
@@ -24,11 +25,25 @@ class SikTest(htmlPy.Object):
     def show_name(self):
         return self.name
 
-    #automatically connects to the specified network SSID and password
+    #shows wifi connect page
     @htmlPy.Slot()
     def network_config(self):
         available = sik_network.Search()
         self.app.template = ("wifi.html", {"available": available})
+        return
+
+    #automatically connects to the specified network SSID and password
+    @htmlPy.Slot(str, result=str)
+    def network_connect(self, wifi_info):
+	
+	#loads form data
+        ssid_name = json.loads(wifi_info)['ssid']
+	passkey = json.loads(wifi_info)['passkey']
+	
+	try:
+		sik_network.Connect(ssid_name, passkey)
+	except:	
+		network_config()
         return
 
     #Reconfigure Key Combinations
@@ -148,16 +163,21 @@ class SikTest(htmlPy.Object):
 
         for answer in question_list:
             sik_api.submit(answer)
-        self.app.template = ("submission.html", {})
+	self.sik_logout()
         return 
 
     @htmlPy.Slot()
     def sik_logout(self):
+        self.app.template = ("submission.html", {})
+	msecr = 10000
         self.logged_in = False
-        self.app.template = ("login.html", {})
+	QtCore.QTimer.singleShot(msecr, self.command_line)
         return
 
     @htmlPy.Slot()
     def command_line(self):
+        self.app.template = ("login.html", {"error": "Logged Out successfully"})
         #os.system("gnome-terminal -e 'sudo shutdown -P now'")
         return
+
+
